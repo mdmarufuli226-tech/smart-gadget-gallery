@@ -425,21 +425,146 @@ async function copyText(text){
 async function downloadInvoice(order){
  if(!order)return;
  if(!window.jspdf?.jsPDF || !window.html2canvas){toast("Invoice tools are still loading. Please try again.");return;}
+
  const invoice=document.createElement("div");
- invoice.style.cssText="position:fixed;left:-10000px;top:0;width:794px;background:#fff;color:#111827;padding:38px;font-family:Arial,sans-serif;z-index:-1";
+ invoice.style.cssText="position:fixed;left:-10000px;top:0;width:794px;background:#fff;color:#0b2854;padding:0;font-family:Arial,Segoe UI,sans-serif;z-index:-1;overflow:hidden";
  const items=Array.isArray(order.items)?order.items:[];
- invoice.innerHTML=`<div style="border-bottom:3px solid #2563eb;padding-bottom:18px;display:flex;justify-content:space-between;gap:20px"><div><div style="font-size:28px;font-weight:900;color:#0f172a">Smart Gadget Gallery</div><div style="color:#64748b;margin-top:5px">Premium Gadgets & Accessories</div></div><div style="text-align:right"><div style="font-size:22px;font-weight:900">INVOICE</div><div style="margin-top:6px"><b>Order ID:</b> ${escHtml(order.id)}</div><div><b>Date:</b> ${new Date(order.createdAt||Date.now()).toLocaleString()}</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0"><div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px"><b>Customer</b><div style="margin-top:7px">${escHtml(order.name)}</div><div>${escHtml(order.phone)}</div><div>${escHtml(order.address)}</div></div><div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px"><b>Order Status</b><div style="margin-top:7px;font-weight:800;color:#b45309">${escHtml(order.status||"Pending")}</div><div style="margin-top:8px"><b>Payment:</b> Cash on Delivery / Pending</div></div></div><table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:#eff6ff"><th style="padding:11px;text-align:left">Product</th><th style="padding:11px;text-align:center">Qty</th><th style="padding:11px;text-align:right">Price</th><th style="padding:11px;text-align:right">Amount</th></tr></thead><tbody>${items.map(item=>`<tr><td style="padding:11px;border-bottom:1px solid #e2e8f0">${escHtml(item.name||("Product #"+item.id))}</td><td style="padding:11px;text-align:center;border-bottom:1px solid #e2e8f0">1</td><td style="padding:11px;text-align:right;border-bottom:1px solid #e2e8f0">${money(Number(item.price)||0)}</td><td style="padding:11px;text-align:right;border-bottom:1px solid #e2e8f0">${money(Number(item.price)||0)}</td></tr>`).join("")}</tbody></table><div style="display:flex;justify-content:flex-end;margin-top:18px"><div style="width:270px"><div style="display:flex;justify-content:space-between;border-top:2px solid #111827;padding-top:10px;font-size:18px;font-weight:900"><span>Total</span><span>${money(order.total)}</span></div></div></div><div style="margin-top:42px;padding-top:15px;border-top:1px solid #e2e8f0;color:#64748b;font-size:12px">Smart Gadget Gallery · Phone: 01987046529 · WhatsApp: 01987046529 · Email: mdmarufuli226@gmail.com</div>`;
+ const qrSrc='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAIAAAAslP2oAAAE6ElEQVR4nO3dUWpkNxRAwThk/1uefAfOCwh0kYSrvj3tdtsHwbsj6efPnz9/Af/19+k3ADcSBgRhQBAGBGFAEAYEYUAQBgRhQBAGBGFAEAYEYUAQBgRhQPhn9R/8/PxMvI/tvvaZrL7/Xa+zy+r7Wd1vs/o6r/89fLFiQBAGBGFAEAYEYUAQBgRhQFieY3w5dT7V9Fxi13xg1fTP9fX1u36uV/4evlgxIAgDgjAgCAOCMCAIA4IwIGybY3zZ9Vx513Px6f0Gu+YPu/ZR7Pr66c9/1fScxIoBQRgQhAFBGBCEAUEYEIQBYXyOcZtd+xam5wCnnve/ck7UNCsGBGFAEAYEYUAQBgRhQBAGhF83x1h1at8CZ1kxIAgDgjAgCAOCMCAIA4IwIIzPMW57rv/KPofpc65O/V5u+3v4YsWAIAwIwoAgDAjCgCAMCMKAsG2O8fp5RKfmBtNzlVO/l9f/HqwYEIQBQRgQhAFBGBCEAUEYEH5e+f/x026bP0xzXtb/s2JAEAYEYUAQBgRhQBAGBGFAWN6Pset5/67n4qeex0/PN06dQzX9e9l1Htf035sVA4IwIAgDgjAgCAOCMCAIA8L4uVK3nac0/Vz8lTnJLtPv59TnYMWAIAwIwoAgDAjCgCAMCMKAsG2OMf38/sv0/GTXfGN6X8Su97NrP8Nt86tVVgwIwoAgDAjCgCAMCMKAIAwI2+7HODUf2OW277tq+vO8bb/NNCsGBGFAEAYEYUAQBgRhQBAGhPH9GK/sQzg1z/nyyr3at90X7n4MGCQMCMKAIAwIwoAgDAjCgDB+z/eu1zm1H+C2+yh22XXvx6nPx/0YcIAwIAgDgjAgCAOCMCAIA8Kxe753vc5t+wGm93Xctk/j1HzD/RhwgDAgCAOCMCAIA4IwIAgDwvL9GKf2Udz2/N75UXvd9jlYMSAIA4IwIAgDgjAgCAOCMCAs78f4bfdOTO8z2fX1r8yF3I8BDxMGBGFAEAYEYUAQBgRhQFjej7HtGx+ae9x2DtKqV85ruu3nNceADYQBQRgQhAFBGBCEAUEYELbd873q9XOoVt/Pbfd47DK9L2X69b9YMSAIA4IwIAgDgjAgCAOCMCBctx9j1alzilZN7wO5bc7zOisGBGFAEAYEYUAQBgRhQBAGhG33fK86db7TLqfmEl9e+dxWnZrPWDEgCAOCMCAIA4IwIAgDgjAgHNuPccqpc6tOnaf02+67cM83DBIGBGFAEAYEYUAQBgRhQDh2P8a0286bmp5LrL7+rvnGrrnBbfM0KwYEYUAQBgRhQBAGBGFAEAaE5TnGl1fu2Zi+X/zL9FzitvvOp03P06wYEIQBQRgQhAFBGBCEAUEYELbNMb68cp/3qun7Maaf0++aw+xy274OKwYEYUAQBgRhQBAGBGFAEAaE8TnGK27btzB9/8Mr+yhOnWNmxYAgDAjCgCAMCMKAIAwIwoDw6+YYp85f+nLqHvFVt815vn5e93zDIGFAEAYEYUAQBgRhQBAGhPE5xuvnQe16/9P3b0yfc/Vl+hytXfeHrLJiQBAGBGFAEAYEYUAQBgRhQPi57f/97zJ9n/dt93Df9nt5ZV70xYoBQRgQhAFBGBCEAUEYEIQBYXmOAb+BFQOCMCAIA4IwIAgDgjAgCAOCMCAIA4IwIAgDgjAgCAOCMCAIA8K/vDMhK5w2ujgAAAAASUVORK5CYII=';
+
+ const rows=items.length?items.map((item,index)=>{
+   const qty=Math.max(1,Number(item.qty||item.quantity||1));
+   const price=Number(item.price)||0;
+   const amount=price*qty;
+   return `<tr>
+     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:center;color:#173b70">${index+1}</td>
+     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;font-weight:700;color:#12356a">${escHtml(item.name||("Product #"+item.id))}</td>
+     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:center">${qty}</td>
+     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:right">${money(price)}</td>
+     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:right;font-weight:700">${money(amount)}</td>
+   </tr>`;
+ }).join(""):`<tr><td colspan="5" style="padding:25px;text-align:center;color:#64748b">No product details available.</td></tr>`;
+
+ const subtotal=items.reduce((sum,item)=>{
+   const qty=Math.max(1,Number(item.qty||item.quantity||1));
+   return sum+(Number(item.price)||0)*qty;
+ },0);
+ const total=Number(order.total)||subtotal;
+
+ invoice.innerHTML=`
+ <div style="background:linear-gradient(135deg,#061d43 0%,#0b3f86 58%,#00aef0 100%);color:#fff;padding:34px 38px 28px;position:relative;overflow:hidden">
+   <div style="position:absolute;right:-85px;top:-110px;width:290px;height:290px;border:18px solid rgba(0,210,255,.28);border-radius:50%"></div>
+   <div style="position:absolute;right:35px;top:25px;width:180px;height:180px;border:2px solid rgba(255,255,255,.18);border-radius:50%"></div>
+   <div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2">
+     <div style="display:flex;align-items:center;gap:16px">
+       <div style="width:78px;height:58px;border:3px solid #18c9ff;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;letter-spacing:-2px;background:rgba(255,255,255,.06)">SGG</div>
+       <div>
+         <div style="font-size:31px;line-height:1;font-weight:900;letter-spacing:-.5px">Smart Gadget <span style="color:#17c8ff">Gallery</span></div>
+         <div style="font-size:14px;margin-top:8px;color:#d9efff;letter-spacing:.5px">Premium Gadgets &amp; Accessories</div>
+       </div>
+     </div>
+     <div style="text-align:right;font-family:cursive;font-size:20px;line-height:1.05;transform:rotate(-4deg);color:#fff">Smart Choice<br><span style="font-size:22px">Better Life</span></div>
+   </div>
+   <div style="display:flex;gap:28px;margin-top:22px;font-size:11px;color:#e7f8ff">
+     <span>✓ 100% Original Products</span><span>✓ Fast &amp; Safe Delivery</span><span>✓ Dedicated Support</span>
+   </div>
+ </div>
+
+ <div style="padding:30px 38px 0">
+   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:22px">
+     <div>
+       <div style="font-size:48px;font-weight:900;letter-spacing:1px;color:#0a2d63;line-height:1">INVOICE</div>
+       <div style="margin-top:9px;color:#4d6d99;font-size:14px">Thank you for choosing Smart Gadget Gallery!</div>
+       <div style="width:70px;height:4px;background:#13baf3;border-radius:5px;margin-top:13px"></div>
+     </div>
+     <div style="display:flex;gap:0;border:1px solid #cfe3fb;border-radius:15px;overflow:hidden;background:#f7fbff;min-width:350px">
+       <div style="padding:17px 22px;border-right:1px solid #cfe3fb">
+         <div style="font-size:12px;color:#5d789d">ORDER ID</div>
+         <div style="font-size:18px;font-weight:900;color:#0b356e;margin-top:5px">${escHtml(order.id||"—")}</div>
+       </div>
+       <div style="padding:17px 22px">
+         <div style="font-size:12px;color:#5d789d">DATE</div>
+         <div style="font-size:15px;font-weight:800;color:#0b356e;margin-top:5px">${new Date(order.createdAt||order.created_at||Date.now()).toLocaleString("en-BD")}</div>
+       </div>
+     </div>
+   </div>
+
+   <div style="display:grid;grid-template-columns:1.45fr .75fr;gap:18px;margin-top:25px">
+     <div style="border:1px solid #cfe3fb;border-radius:15px;padding:20px 22px;background:linear-gradient(135deg,#fbfdff,#f1f8ff)">
+       <div style="font-size:18px;font-weight:900;color:#0b356e;margin-bottom:14px">Customer Details</div>
+       <div style="font-size:14px;line-height:1.8;color:#243f67">
+         <div><b>Name</b> &nbsp;&nbsp; ${escHtml(order.name||order.customer_name||"—")}</div>
+         <div><b>Phone</b> &nbsp; ${escHtml(order.phone||"—")}</div>
+         <div><b>Address</b> ${escHtml(order.address||"—")}</div>
+       </div>
+     </div>
+     <div style="border:1px solid #cfe3fb;border-radius:15px;padding:16px;background:#f1f8ff;display:flex;align-items:center;gap:13px">
+       ${qrSrc?`<img src="${qrSrc}" style="width:92px;height:92px;border-radius:8px;background:#fff;padding:5px">`:""}
+       <div><div style="font-family:cursive;font-size:24px;color:#0b3f86">Thank You!</div><div style="font-size:12px;color:#54749e;margin-top:5px">Scan for WhatsApp support</div><div style="font-size:11px;color:#54749e;margin-top:5px">01987046529</div></div>
+     </div>
+   </div>
+
+   <div style="margin-top:24px;border:1px solid #c7def8;border-radius:15px;overflow:hidden">
+     <table style="width:100%;border-collapse:collapse;font-size:13px">
+       <thead><tr style="background:linear-gradient(90deg,#063e86,#0b68c7);color:#fff">
+         <th style="padding:14px;text-align:center;width:42px">#</th>
+         <th style="padding:14px;text-align:left">Product Name</th>
+         <th style="padding:14px;text-align:center;width:70px">Qty</th>
+         <th style="padding:14px;text-align:right;width:115px">Price</th>
+         <th style="padding:14px;text-align:right;width:125px">Amount</th>
+       </tr></thead>
+       <tbody>${rows}</tbody>
+     </table>
+   </div>
+
+   <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:23px;align-items:start">
+     <div style="border:1px solid #cfe3fb;border-radius:15px;padding:18px 20px;background:#f4f9ff">
+       <div style="font-weight:900;color:#0b356e;font-size:14px;margin-bottom:13px">Our Promise</div>
+       <div style="font-size:12px;color:#36577f;line-height:2">
+         <div>🛡️ <b>100% Genuine Products</b></div>
+         <div>🚚 <b>Fast &amp; Safe Delivery</b></div>
+         <div>🎧 <b>Dedicated Customer Support</b></div>
+       </div>
+     </div>
+     <div style="border:1px solid #cfe3fb;border-radius:15px;overflow:hidden">
+       <div style="padding:14px 18px;display:flex;justify-content:space-between;color:#183b68"><span>Subtotal</span><b>${money(subtotal)}</b></div>
+       <div style="padding:14px 18px;border-top:1px solid #dbeafe;display:flex;justify-content:space-between;color:#183b68"><span>Delivery Charge</span><b>${money(Math.max(0,total-subtotal))}</b></div>
+       <div style="padding:17px 18px;background:linear-gradient(90deg,#063b7d,#0b66c7);color:#fff;display:flex;justify-content:space-between;font-size:21px;font-weight:900"><span>Total</span><span>${money(total)}</span></div>
+     </div>
+   </div>
+ </div>
+
+ <div style="margin-top:27px;background:linear-gradient(135deg,#061d43,#0b3f86);color:#fff;padding:23px 38px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:18px">
+   <div><div style="font-weight:900;font-size:16px">Smart Gadget Gallery</div><div style="font-size:11px;color:#cce9ff;margin-top:5px">Premium Gadgets &amp; Accessories</div></div>
+   <div style="font-size:12px;line-height:1.8"><div>☎ 01987046529</div><div>WhatsApp 01987046529</div><div>✉ mdmarufuli226@gmail.com</div></div>
+   <div style="text-align:right;font-family:cursive;font-size:25px">Thank You<br><span style="font-family:Arial;font-size:10px;letter-spacing:2px">FOR YOUR PURCHASE</span></div>
+ </div>
+ <div style="height:7px;background:linear-gradient(90deg,#063b7d,#00baf2,#063b7d)"></div>
+ </div>`;
+
  document.body.appendChild(invoice);
  try{
-  const canvas=await html2canvas(invoice,{scale:2,backgroundColor:"#fff",useCORS:true});
-  const {jsPDF}=window.jspdf;const pdf=new jsPDF("p","mm","a4");
-  const margin=10,pageW=210,pageH=297,imgW=pageW-margin*2,imgH=canvas.height*imgW/canvas.width;
-  let left=imgH,pos=margin;const img=canvas.toDataURL("image/jpeg",.95);
-  pdf.addImage(img,"JPEG",margin,pos,imgW,imgH);left-=pageH-margin*2;
-  while(left>0){pos=margin-left;pdf.addPage();pdf.addImage(img,"JPEG",margin,pos,imgW,imgH);left-=pageH-margin*2;}
-  pdf.save(`Smart-Gadget-Gallery-${String(order.id).replace(/[^a-zA-Z0-9_-]/g,"-")}.pdf`);
- }catch(err){console.error(err);toast("Invoice PDF তৈরি করা যায়নি.");}
- finally{invoice.remove();}
+  const canvas=await html2canvas(invoice,{scale:3,backgroundColor:"#fff",useCORS:true,logging:false});
+  const {jsPDF}=window.jspdf;
+  const pdf=new jsPDF("p","mm","a4");
+  const margin=7,pageW=210,pageH=297;
+  const imgW=pageW-margin*2,imgH=canvas.height*imgW/canvas.width;
+  let left=imgH,pos=margin;
+  const img=canvas.toDataURL("image/png");
+  pdf.addImage(img,"PNG",margin,pos,imgW,imgH);
+  left-=pageH-margin*2;
+  while(left>0){
+    pos=margin-left;
+    pdf.addPage();
+    pdf.addImage(img,"PNG",margin,pos,imgW,imgH);
+    left-=pageH-margin*2;
+  }
+  pdf.save(`Smart-Gadget-Gallery-${String(order.id||"order").replace(/[^a-zA-Z0-9_-]/g,"-")}.pdf`);
+ }catch(err){
+  console.error(err);
+  toast("Invoice PDF তৈরি করা যায়নি.");
+ }finally{
+  invoice.remove();
+ }
 }
 function openOrderDetails(id){
  const o=adminOrderCache.find(x=>String(x.id)===String(id));if(!o)return;
