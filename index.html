@@ -120,6 +120,156 @@ footer{background:linear-gradient(180deg,var(--card),rgba(7,20,38,.98));}
 @media(max-width:850px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.admin-tools{grid-template-columns:1fr 1fr}.admin-tools .wide{grid-column:1/-1}}
 @media(max-width:600px){.admin-kpis{grid-template-columns:1fr 1fr}.admin-hero{flex-direction:column}.admin-dashboard .admin-hero h2{font-size:23px}.admin-tools{grid-template-columns:1fr}.admin-tools .wide{grid-column:auto}.order-detail-grid{grid-template-columns:1fr}.order-success-actions{grid-template-columns:1fr}}
 
+
+/* Premium checkout modal */
+#orderModal .checkout-modal{
+  width:min(1180px,96vw);
+  max-width:1180px;
+  max-height:92vh;
+  overflow:auto;
+  padding:0;
+  border:1px solid rgba(37,99,235,.18);
+  border-radius:26px;
+  background:#f6faff;
+  box-shadow:0 30px 90px rgba(7,20,38,.30);
+}
+.checkout-head{
+  background:linear-gradient(135deg,#061a38 0%,#0b3976 55%,#0b8eea 100%);
+  color:#fff;
+  padding:24px 30px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+.checkout-brand{display:flex;align-items:center;gap:14px}
+.checkout-brand-badge{
+  width:54px;height:54px;border-radius:16px;
+  display:grid;place-items:center;
+  border:2px solid #20cfff;
+  background:rgba(255,255,255,.08);
+  font-weight:950;font-size:20px;
+}
+.checkout-title{font-size:25px;font-weight:950;letter-spacing:-.02em}
+.checkout-subtitle{font-size:13px;opacity:.82;margin-top:4px}
+.checkout-close{
+  width:42px;height:42px;border:1px solid rgba(255,255,255,.28);
+  border-radius:13px;background:rgba(255,255,255,.10);color:#fff;
+  font-size:25px;cursor:pointer;
+}
+.checkout-body{
+  padding:24px;
+  display:grid;
+  grid-template-columns:minmax(0,1.45fr) minmax(340px,.85fr);
+  gap:20px;
+}
+.checkout-card{
+  background:#fff;
+  border:1px solid #dbeafe;
+  border-radius:22px;
+  padding:24px;
+  box-shadow:0 10px 30px rgba(15,55,100,.07);
+}
+.checkout-section-title{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.checkout-icon{
+  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#0b58b6,#11a7f5);color:#fff;font-size:22px;
+}
+.checkout-section-title h3{margin:0;color:#0b3670;font-size:21px}
+.checkout-section-title p{margin:3px 0 0;color:#64748b;font-size:13px}
+.checkout-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.checkout-field{display:flex;flex-direction:column;gap:7px}
+.checkout-field.full{grid-column:1/-1}
+.checkout-label{font-size:13px;font-weight:850;color:#123b70}
+.checkout-label .req{color:#ef4444}
+.checkout-input,.checkout-select,.checkout-textarea{
+  width:100%;box-sizing:border-box;
+  border:1px solid #cfe0f5;border-radius:13px;
+  background:#fbfdff;color:#102f55;
+  padding:13px 14px;font:inherit;outline:none;
+  transition:.2s;
+}
+.checkout-input:focus,.checkout-select:focus,.checkout-textarea:focus{
+  border-color:#1598ee;box-shadow:0 0 0 4px rgba(21,152,238,.10);background:#fff;
+}
+.checkout-textarea{min-height:112px;resize:vertical}
+.checkout-note{
+  margin-top:18px;padding:13px 15px;border-radius:14px;
+  background:linear-gradient(135deg,#eff8ff,#f7fbff);
+  border:1px solid #d8ebff;color:#355b85;font-size:12px;
+  display:flex;gap:10px;align-items:flex-start;
+}
+.checkout-place{
+  width:100%;margin-top:18px;border:0;border-radius:15px;
+  padding:15px 18px;font-size:16px;font-weight:900;color:#fff;
+  background:linear-gradient(100deg,#0864d5,#0b9cf0);
+  box-shadow:0 10px 24px rgba(8,100,213,.24);cursor:pointer;
+}
+.checkout-secure{text-align:center;color:#71839a;font-size:12px;margin-top:10px}
+.checkout-summary{
+  background:linear-gradient(180deg,#fff,#f8fbff);
+  overflow:hidden;
+}
+.checkout-summary-head{
+  margin:-24px -24px 18px;
+  padding:18px 20px;
+  background:linear-gradient(135deg,#06285c,#0b5db6);
+  color:#fff;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.checkout-summary-head h3{margin:0;font-size:20px}
+.checkout-items{display:flex;flex-direction:column;gap:12px}
+.checkout-item{
+  display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;
+  padding:12px 0;border-bottom:1px solid #e5eef8;
+}
+.checkout-item:last-child{border-bottom:0}
+.checkout-thumb{
+  width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
+  background:linear-gradient(135deg,#eef6ff,#dceeff);
+  border:1px solid #d7e8fb;font-size:25px;
+}
+.checkout-item-name{font-weight:850;color:#123b70;font-size:14px}
+.checkout-item-meta{font-size:12px;color:#71839a;margin-top:3px}
+.checkout-item-price{text-align:right;font-weight:900;color:#123b70;font-size:14px}
+.checkout-totals{border-top:1px solid #dce8f5;margin-top:14px;padding-top:14px}
+.checkout-total-row{display:flex;justify-content:space-between;padding:6px 0;color:#49647f}
+.checkout-total-row strong{color:#123b70}
+.checkout-total{
+  margin-top:8px;padding:15px;border-radius:15px;
+  background:linear-gradient(100deg,#073d83,#0b7edc);
+  color:#fff;display:flex;justify-content:space-between;align-items:center;
+  font-size:19px;font-weight:950;
+}
+.checkout-benefits{
+  margin-top:15px;padding:15px;border-radius:15px;
+  background:#eef7ff;border:1px solid #d6ebff;
+}
+.checkout-benefits b{color:#0b5bb5}
+.checkout-benefits div{margin-top:8px;font-size:12px;color:#416487}
+.checkout-delivery-note{
+  margin-top:12px;padding:13px;border-radius:14px;
+  background:#f3faff;border:1px solid #d7edff;color:#28618e;font-size:12px;line-height:1.5;
+}
+.checkout-footer{
+  background:#061d3d;color:#fff;padding:17px 24px;
+  display:flex;justify-content:space-between;align-items:center;gap:15px;
+  font-size:12px;
+}
+.checkout-footer b{font-size:14px}
+@media(max-width:850px){
+  #orderModal .checkout-modal{width:96vw}
+  .checkout-body{grid-template-columns:1fr;padding:16px}
+  .checkout-head{padding:18px 20px}
+}
+@media(max-width:600px){
+  .checkout-form-grid{grid-template-columns:1fr}
+  .checkout-field.full{grid-column:auto}
+  .checkout-card{padding:17px}
+  .checkout-summary-head{margin:-17px -17px 15px}
+  .checkout-footer{flex-direction:column;align-items:flex-start}
+}
+
 </style>
 </head>
 <body>
@@ -202,7 +352,73 @@ footer{background:linear-gradient(180deg,var(--card),rgba(7,20,38,.98));}
 
 <div class="modal" id="cartModal"><div class="modal-box"><div class="modal-head"><h2>Your Cart</h2><button class="close" id="closeCart">×</button></div><div id="cartItems" class="muted">Your cart is empty.</div><div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center"><b>Total: <span id="cartTotal">৳0</span></b><button class="btn btn-blue" id="checkoutBtn">Place Order</button></div></div></div>
 
-<div class="modal" id="orderModal"><div class="modal-box"><div class="modal-head"><h2>Customer Order</h2><button class="close" id="closeOrder">×</button></div><p class="muted">Enter your name, phone number and delivery address. Your order will be saved securely online.</p><form id="orderForm"><input class="field" id="custName" placeholder="Customer name" required style="margin-top:10px"><input class="field" id="custPhone" placeholder="Phone number" required style="margin-top:10px"><textarea class="field" id="custAddress" placeholder="Delivery address" required style="margin-top:10px;min-height:90px"></textarea><button class="btn btn-blue" style="width:100%;margin-top:12px">Confirm Order</button></form></div></div>
+<div class="modal" id="orderModal">
+<div class="modal-box checkout-modal">
+  <div class="checkout-head">
+    <div class="checkout-brand">
+      <div class="checkout-brand-badge">SGG</div>
+      <div><div class="checkout-title">Complete Your Order</div><div class="checkout-subtitle">Smart Gadget Gallery • Premium & Secure Checkout</div></div>
+    </div>
+    <button class="checkout-close" id="closeOrder" aria-label="Close">×</button>
+  </div>
+  <form id="orderForm">
+    <div class="checkout-body">
+      <div class="checkout-card">
+        <div class="checkout-section-title">
+          <div class="checkout-icon">👤</div>
+          <div><h3>Customer Information</h3><p>Please enter your details to complete the order.</p></div>
+        </div>
+        <div class="checkout-form-grid">
+          <div class="checkout-field">
+            <label class="checkout-label">Full Name <span class="req">*</span></label>
+            <input class="checkout-input" id="custName" placeholder="e.g. Md. Rahim Hossain" required>
+          </div>
+          <div class="checkout-field">
+            <label class="checkout-label">Mobile Number <span class="req">*</span></label>
+            <input class="checkout-input" id="custPhone" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" required>
+          </div>
+          <div class="checkout-field full">
+            <label class="checkout-label">Detailed Delivery Address <span class="req">*</span></label>
+            <textarea class="checkout-textarea" id="custAddress" placeholder="House No., Road No., Area, Landmark" required></textarea>
+          </div>
+          <div class="checkout-field full">
+            <label class="checkout-label">City / District <span class="req">*</span></label>
+            <select class="checkout-select" id="custCity" required>
+              <option value="">Select your city / district</option>
+              <option>Dhaka</option><option>Chattogram</option><option>Sylhet</option><option>Rajshahi</option>
+              <option>Khulna</option><option>Barishal</option><option>Rangpur</option><option>Mymensingh</option>
+              <option>Gazipur</option><option>Narayanganj</option><option>Cumilla</option><option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="checkout-note">🔒 <span>Your information is used only to process and deliver your order. Please make sure your phone number and address are correct.</span></div>
+        <button class="checkout-place" type="submit">🛒 &nbsp; Place Order &nbsp; →</button>
+        <div class="checkout-secure">🔐 Secure order • Fast & Safe Delivery • Dedicated Support</div>
+      </div>
+
+      <div class="checkout-card checkout-summary">
+        <div class="checkout-summary-head">
+          <h3>🛍️ Order Summary</h3><span id="checkoutItemCount" style="font-size:12px;font-weight:800;background:rgba(255,255,255,.14);padding:7px 10px;border-radius:999px">0 Items</span>
+        </div>
+        <div id="checkoutItems" class="checkout-items"></div>
+        <div class="checkout-totals">
+          <div class="checkout-total-row"><span>Subtotal</span><strong id="checkoutSubtotal">৳0</strong></div>
+          <div class="checkout-total-row"><span>Delivery Charge</span><strong>৳0</strong></div>
+          <div class="checkout-total"><span>Total</span><span id="checkoutGrandTotal">৳0</span></div>
+        </div>
+        <div class="checkout-benefits">
+          <b>✓ Why Shop With Us?</b>
+          <div>✓ 100% Original Products</div>
+          <div>✓ Fast & Safe Delivery</div>
+          <div>✓ Dedicated Customer Support</div>
+        </div>
+        <div class="checkout-delivery-note">🚚 Your order will be delivered to the address you provide at checkout. Thank you for shopping with us!</div>
+      </div>
+    </div>
+    <div class="checkout-footer"><div><b>Smart Gadget Gallery</b><br>Premium Gadgets & Accessories</div><div>📞 01987046529 &nbsp; • &nbsp; 💬 WhatsApp Support</div></div>
+  </form>
+</div>
+</div>
 <div class="modal" id="orderSuccessModal"><div class="modal-box" style="max-width:560px"><div class="order-success-box"><button class="close" id="closeOrderSuccess" style="position:absolute;right:24px;top:18px">×</button><div class="order-success-icon">✓</div><h2 style="margin:0">Order Confirmed!</h2><p class="muted" style="margin:5px 0 0">Your order has been saved successfully.</p><div class="order-id-box"><code id="successOrderId">SGG-XXXXXX</code><button class="btn btn-soft" id="copyOrderId">📋 Copy</button></div><div id="successOrderSummary" class="panel" style="padding:14px;text-align:left"></div><div class="order-success-actions"><button class="btn btn-blue" id="downloadInvoiceBtn">📄 Download Invoice PDF</button><button class="btn btn-soft" id="successTrackBtn">🔎 Track My Order</button><button class="btn btn-primary full" id="closeSuccessBtn">Done</button></div></div></div></div>
 <div class="modal" id="orderDetailModal"><div class="modal-box" style="max-width:680px;max-height:90vh;overflow:auto"><div class="modal-head"><h2>Order Details</h2><button class="close" id="closeOrderDetail">×</button></div><div id="orderDetailContent"></div></div></div>
 <div class="modal" id="adminModal"><div class="modal-box" style="max-width:1100px;max-height:92vh;overflow:auto">
@@ -373,14 +589,35 @@ function removeCart(i){cart.splice(i,1);save();renderCart()}
 function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove("show"),2200)}
 search.addEventListener("input",render);category.addEventListener("change",render);refreshCategories();render();save();
 document.getElementById("cartBtn").onclick=openCart;document.getElementById("closeCart").onclick=()=>document.getElementById("cartModal").classList.remove("open");
-document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}document.getElementById("orderModal").classList.add("open");};
+function renderCheckoutSummary(){
+ const box=document.getElementById("checkoutItems");
+ const count=document.getElementById("checkoutItemCount");
+ const sub=document.getElementById("checkoutSubtotal");
+ const grand=document.getElementById("checkoutGrandTotal");
+ const total=cart.reduce((s,p)=>s+(Number(p.price)||0),0);
+ if(count) count.textContent=`${cart.length} ${cart.length===1?"Item":"Items"}`;
+ if(sub) sub.textContent=money(total);
+ if(grand) grand.textContent=money(total);
+ if(!box) return;
+ box.innerHTML=cart.length?cart.map(p=>`<div class="checkout-item">
+   <div class="checkout-thumb">${escHtml(p.icon||"🛍️")}</div>
+   <div><div class="checkout-item-name">${escHtml(p.name)}</div><div class="checkout-item-meta">Qty: 1</div></div>
+   <div class="checkout-item-price">${money(Number(p.price)||0)}</div>
+ </div>`).join(""):`<div class="muted" style="padding:20px 0;text-align:center">Your cart is empty.</div>`;
+}
+
+document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}renderCheckoutSummary();document.getElementById("orderModal").classList.add("open");};
 document.getElementById("closeOrder").onclick=()=>document.getElementById("orderModal").classList.remove("open");
+document.getElementById("orderModal").addEventListener("click",e=>{if(e.target.id==="orderModal")e.currentTarget.classList.remove("open")});
+
 document.getElementById("orderForm").onsubmit=async e=>{
  e.preventDefault();
  if(!cart.length){toast("Your cart is empty.");return;}
  const name=document.getElementById("custName").value.trim();
  const phone=document.getElementById("custPhone").value.trim();
- const address=document.getElementById("custAddress").value.trim();
+ const addressBase=document.getElementById("custAddress").value.trim();
+ const city=document.getElementById("custCity").value.trim();
+ const address=city ? `${addressBase}, ${city}` : addressBase;
  const total=cart.reduce((s,p)=>s+(Number(p.price)||0),0);
  const id="SGG-"+(Date.now().toString(36).slice(-4)+Math.random().toString(36).slice(2,4)).toUpperCase();
  const items=cart.map(p=>({id:p.id,name:p.name,price:Number(p.price)||0}));
@@ -404,7 +641,7 @@ document.getElementById("orderForm").onsubmit=async e=>{
    console.error("Order save failed:",err);
    toast("Order could not be saved: "+(err?.message||String(err)));
  }finally{
-   if(btn){btn.disabled=false;btn.textContent="Confirm Order";}
+   if(btn){btn.disabled=false;btn.textContent="Place Order";}
  }
 };
 
