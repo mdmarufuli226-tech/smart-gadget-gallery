@@ -843,6 +843,14 @@ async function downloadInvoice(order){
      </div>
    </div>
 
+   <div style="margin-top:18px;border:1px solid #cfe3fb;border-radius:15px;padding:15px 18px;background:linear-gradient(135deg,#f7fbff,#eef7ff);display:flex;justify-content:space-between;align-items:center;gap:18px">
+     <div>
+       <div style="font-size:12px;color:#5d789d;font-weight:800;letter-spacing:.04em">PAYMENT METHOD</div>
+       <div style="font-size:18px;font-weight:900;color:#0b356e;margin-top:5px">${escHtml(order.paymentMethod||order.payment_method||"Not provided")}</div>
+     </div>
+     ${((order.paymentMethod||order.payment_method) && PAYMENT_DETAILS[order.paymentMethod||order.payment_method]) ? `<div style="font-size:13px;color:#36577f;text-align:right">${PAYMENT_DETAILS[order.paymentMethod||order.payment_method]}</div>` : `<div style="font-size:12px;color:#64748b;text-align:right">Customer selected this payment method at checkout.</div>`}
+   </div>
+
    <div style="margin-top:24px;border:1px solid #c7def8;border-radius:15px;overflow:hidden">
      <table style="width:100%;border-collapse:collapse;font-size:13px">
        <thead><tr style="background:linear-gradient(90deg,#063e86,#0b68c7);color:#fff">
