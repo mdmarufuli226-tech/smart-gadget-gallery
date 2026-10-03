@@ -393,6 +393,18 @@ footer{background:linear-gradient(180deg,var(--card),rgba(7,20,38,.98));}
             </select>
           </div>
           <div class="checkout-field full">
+            <label class="checkout-label">Payment Method <span class="req">*</span></label>
+            <select class="checkout-select" id="paymentMethod" required>
+              <option value="">Select payment method</option>
+              <option value="Cash on Delivery">💵 Cash on Delivery</option>
+              <option value="bKash">📱 bKash</option>
+              <option value="Nagad">📱 Nagad</option>
+              <option value="Rocket">📱 Rocket</option>
+              <option value="Dutch-Bangla Bank">🏦 Dutch-Bangla Bank</option>
+            </select>
+            <div id="paymentDetails" style="display:none;margin-top:10px;padding:12px 14px;border:1px solid #bfdbfe;border-radius:12px;background:#eff6ff;color:#173b70;line-height:1.65;font-size:13px"></div>
+          </div>
+          <div class="checkout-field full">
             <label class="checkout-label">Customer Note <span style="font-weight:500;color:var(--muted)">(Optional)</span></label>
             <textarea class="checkout-textarea" id="custNote" maxlength="500" placeholder="Any special instruction for your order? e.g. Call before delivery, preferred delivery time..."></textarea>
             <div style="font-size:11px;color:var(--muted);text-align:right;margin-top:4px">Optional • Maximum 500 characters</div>
@@ -679,7 +691,21 @@ function renderCheckoutSummary(){
  </div>`).join(""):`<div class="muted" style="padding:20px 0;text-align:center">Your cart is empty.</div>`;
 }
 
-document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}renderCheckoutSummary();document.getElementById("orderModal").classList.add("open");};
+const PAYMENT_DETAILS={
+  "bKash":"📱 <b>bKash Personal:</b> 01987046529<br><span style=\"font-size:12px;color:#54749e\">Send Money to this number, then place your order.</span>",
+  "Nagad":"📱 <b>Nagad Personal:</b> 01987046529<br><span style=\"font-size:12px;color:#54749e\">Send Money to this number, then place your order.</span>",
+  "Rocket":"📱 <b>Rocket:</b> 019870465296<br><span style=\"font-size:12px;color:#54749e\">Send Money to this number, then place your order.</span>",
+  "Dutch-Bangla Bank":"🏦 <b>Dutch-Bangla Bank Account:</b> 2927348926085<br><span style=\"font-size:12px;color:#54749e\">Bank transfer to this account, then place your order.</span>"
+};
+function updatePaymentDetails(){
+ const method=document.getElementById("paymentMethod")?.value||"";
+ const box=document.getElementById("paymentDetails");
+ if(!box)return;
+ box.innerHTML=PAYMENT_DETAILS[method]||"";
+ box.style.display=PAYMENT_DETAILS[method]?"block":"none";
+}
+document.getElementById("paymentMethod")?.addEventListener("change",updatePaymentDetails);
+document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}renderCheckoutSummary();updatePaymentDetails();document.getElementById("orderModal").classList.add("open");};
 document.getElementById("closeOrder").onclick=()=>document.getElementById("orderModal").classList.remove("open");
 document.getElementById("orderModal").addEventListener("click",e=>{if(e.target.id==="orderModal")e.currentTarget.classList.remove("open")});
 
@@ -690,17 +716,18 @@ document.getElementById("orderForm").onsubmit=async e=>{
  const phone=document.getElementById("custPhone").value.trim();
  const addressBase=document.getElementById("custAddress").value.trim();
  const city=document.getElementById("custCity").value.trim();
+ const paymentMethod=document.getElementById("paymentMethod")?.value.trim()||"";
  const note=document.getElementById("custNote")?.value.trim()||"";
  const address=city ? `${addressBase}, ${city}` : addressBase;
  const total=cart.reduce((s,p)=>s+(Number(p.price)||0),0);
  const id="SGG-"+(Date.now().toString(36).slice(-4)+Math.random().toString(36).slice(2,4)).toUpperCase();
  const items=cart.map(p=>({id:p.id,name:p.name,price:Number(p.price)||0}));
- const order={id,name,phone,address,note,items,total,status:"Pending",createdAt:new Date().toISOString()};
+ const order={id,name,phone,address,paymentMethod,note,items,total,status:"Pending",createdAt:new Date().toISOString()};
  const btn=e.target.querySelector("button[type=submit]");
  if(btn){btn.disabled=true;btn.textContent="Placing order...";}
  try{
    if(CLOUD_ENABLED){
-     const {error}=await sb.from("orders").insert({order_code:id,customer_name:name,phone,address,customer_note:note||null,items,total,status:"Pending"});
+     const {error}=await sb.from("orders").insert({order_code:id,customer_name:name,phone,address,customer_note:note||null,payment_method:paymentMethod,items,total,status:"Pending"});
      if(error) throw new Error(error.message);
    }
    const orders=JSON.parse(localStorage.getItem("sgg-orders")||"[]");
@@ -725,7 +752,8 @@ let adminFilterState={q:"",status:"",date:""};
 function showOrderSuccess(order){
  lastPlacedOrder=order;
  document.getElementById("successOrderId").textContent=order.id;
- document.getElementById("successOrderSummary").innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px"><div><b>Customer</b><br>${escHtml(order.name)}</div><div><b>Phone</b><br>${escHtml(order.phone)}</div><div style="grid-column:1/-1"><b>Delivery Address</b><br>${escHtml(order.address)}</div><div><b>Total</b><br><strong>${money(order.total)}</strong></div><div><b>Status</b><br><span style="color:#b77900;font-weight:800">${escHtml(order.status||"Pending")}</span></div></div>`;
+ const payInfo=PAYMENT_DETAILS[order.paymentMethod]||"";
+ document.getElementById("successOrderSummary").innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px"><div><b>Customer</b><br>${escHtml(order.name)}</div><div><b>Phone</b><br>${escHtml(order.phone)}</div><div style="grid-column:1/-1"><b>Delivery Address</b><br>${escHtml(order.address)}</div><div><b>Total</b><br><strong>${money(order.total)}</strong></div><div><b>Status</b><br><span style="color:#b77900;font-weight:800">${escHtml(order.status||"Pending")}</span></div><div style="grid-column:1/-1"><b>Payment Method</b><br>${escHtml(order.paymentMethod||"—")}</div>${payInfo?`<div style="grid-column:1/-1;margin-top:4px;padding:10px 12px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;color:#173b70">${payInfo}</div>`:""}</div>`;
  document.getElementById("orderSuccessModal").classList.add("open");
 }
 function closeOrderSuccess(){document.getElementById("orderSuccessModal").classList.remove("open");}
@@ -881,7 +909,7 @@ async function downloadInvoice(order){
 function openOrderDetails(id){
  const o=adminOrderCache.find(x=>String(x.id)===String(id));if(!o)return;
  const items=Array.isArray(o.items)?o.items:[];
- document.getElementById("orderDetailContent").innerHTML=`<div class="order-detail-grid"><div class="order-detail-card"><h4>ORDER ID</h4><b class="admin-id">${escHtml(o.id)}</b></div><div class="order-detail-card"><h4>STATUS</h4><select class="select" style="width:100%" onchange="updateOrderStatus('${escHtml(o.id)}',this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option ${o.status===st?"selected":""}>${st}</option>`).join("")}</select></div><div class="order-detail-card"><h4>CUSTOMER</h4>${escHtml(o.name)}<br>${escHtml(o.phone)}</div><div class="order-detail-card"><h4>DELIVERY ADDRESS</h4>${escHtml(o.address)}</div><div class="order-detail-card" style="grid-column:1/-1"><h4>📝 CUSTOMER NOTE</h4>${o.note?`<div style="padding:10px 12px;border-radius:10px;background:var(--card);border:1px solid var(--border);line-height:1.6">${escHtml(o.note)}</div>`:`<span class="muted">No customer note.</span>`}</div></div><div class="order-detail-items">${items.length?items.map(i=>`<div class="order-detail-item"><span>${escHtml(i.name||("Product #"+i.id))}</span><b>${money(Number(i.price)||0)}</b></div>`).join(""):"<div class='order-detail-item'>No item details.</div>"}</div><div class="order-detail-total"><span>Total</span><span>${money(o.total)}</span></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button class="btn btn-blue" onclick="downloadInvoice(adminOrderCache.find(x=>x.id==='${escHtml(o.id)}'))">📄 Invoice PDF</button><button class="btn btn-soft" onclick="copyText('${escHtml(o.id)}')">📋 Copy ID</button></div>`;
+ document.getElementById("orderDetailContent").innerHTML=`<div class="order-detail-grid"><div class="order-detail-card"><h4>ORDER ID</h4><b class="admin-id">${escHtml(o.id)}</b></div><div class="order-detail-card"><h4>STATUS</h4><select class="select" style="width:100%" onchange="updateOrderStatus('${escHtml(o.id)}',this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option ${o.status===st?"selected":""}>${st}</option>`).join("")}</select></div><div class="order-detail-card"><h4>CUSTOMER</h4>${escHtml(o.name)}<br>${escHtml(o.phone)}</div><div class="order-detail-card"><h4>DELIVERY ADDRESS</h4>${escHtml(o.address)}</div><div class="order-detail-card"><h4>💳 PAYMENT METHOD</h4>${o.paymentMethod?`<b>${escHtml(o.paymentMethod)}</b>`:`<span class="muted">Not provided.</span>`}</div><div class="order-detail-card" style="grid-column:1/-1"><h4>📝 CUSTOMER NOTE</h4>${o.note?`<div style="padding:10px 12px;border-radius:10px;background:var(--card);border:1px solid var(--border);line-height:1.6">${escHtml(o.note)}</div>`:`<span class="muted">No customer note.</span>`}</div></div><div class="order-detail-items">${items.length?items.map(i=>`<div class="order-detail-item"><span>${escHtml(i.name||("Product #"+i.id))}</span><b>${money(Number(i.price)||0)}</b></div>`).join(""):"<div class='order-detail-item'>No item details.</div>"}</div><div class="order-detail-total"><span>Total</span><span>${money(o.total)}</span></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button class="btn btn-blue" onclick="downloadInvoice(adminOrderCache.find(x=>x.id==='${escHtml(o.id)}'))">📄 Invoice PDF</button><button class="btn btn-soft" onclick="copyText('${escHtml(o.id)}')">📋 Copy ID</button></div>`;
  document.getElementById("orderDetailModal").classList.add("open");
 }
 
@@ -976,7 +1004,7 @@ async function getCloudOrders(){
 }
 async function renderAdmin(){
  adminOrderCache=CLOUD_ENABLED?await getCloudOrders():JSON.parse(localStorage.getItem("sgg-orders")||"[]");
- adminOrderCache=adminOrderCache.map(o=>({id:o.order_code||o.id,name:o.customer_name||o.name||"",phone:o.phone||"",address:o.address||"",note:o.customer_note||o.note||"",items:o.items||[],total:Number(o.total)||0,status:o.status||"Pending",createdAt:o.created_at||o.createdAt}));
+ adminOrderCache=adminOrderCache.map(o=>({id:o.order_code||o.id,name:o.customer_name||o.name||"",phone:o.phone||"",address:o.address||"",paymentMethod:o.payment_method||o.paymentMethod||"",note:o.customer_note||o.note||"",items:o.items||[],total:Number(o.total)||0,status:o.status||"Pending",createdAt:o.created_at||o.createdAt}));
  const orders=adminOrderCache;
  const sales=orders.filter(o=>o.status!=="Cancelled").reduce((sum,o)=>sum+o.total,0);
  const pending=orders.filter(o=>o.status==="Pending").length;
@@ -1005,7 +1033,7 @@ async function updateOrderStatus(id,status){
 async function exportOrders(){
  const orders=CLOUD_ENABLED?await getCloudOrders():JSON.parse(localStorage.getItem("sgg-orders")||"[]");
  if(!orders.length){toast("No orders to export.");return;}
- const rows=[["Order ID","Customer","Phone","Address","Customer Note","Items","Total","Status","Date"],...orders.map(o=>[o.order_code||o.id,o.customer_name||o.name,o.phone,o.address,o.customer_note||o.note||"",JSON.stringify(o.items),o.total,o.status,o.created_at||o.createdAt])];
+ const rows=[["Order ID","Customer","Phone","Address","Payment Method","Customer Note","Items","Total","Status","Date"],...orders.map(o=>[o.order_code||o.id,o.customer_name||o.name,o.phone,o.address,o.payment_method||o.paymentMethod||"",o.customer_note||o.note||"",JSON.stringify(o.items),o.total,o.status,o.created_at||o.createdAt])];
  const csv=rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\n");
  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="smart-gadget-orders.csv";a.click();URL.revokeObjectURL(a.href);
 }
