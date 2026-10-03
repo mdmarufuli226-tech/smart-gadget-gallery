@@ -460,7 +460,7 @@ async function cloudLoadProducts(){
    const {data,error}=await sb.from("products").select("*").eq("active",true).order("id",{ascending:false});
    if(error){ console.error("Cloud product load failed:",error); return; }
    if(Array.isArray(data)&&data.length){
-     products=data.map(p=>({id:p.id,name:p.name,cat:p.category,price:Number(p.price),icon:p.icon||"📦",badge:p.badge||"New",desc:p.description||"",rating:p.rating||"5",image:p.image_url||""}));
+     products=data.map(p=>({id:p.id,name:p.name,cat:p.category,price:Number(p.price),icon:p.icon||"📦",badge:p.badge||"New",desc:p.description||"",rating:p.rating||"5",image:p.image_url||"",video:p.video_url||""}));
      localStorage.setItem("sgg-products",JSON.stringify(products)); refreshCategories(); render();
    }
  }catch(err){ console.error("Cloud product load exception:",err); }
@@ -471,7 +471,35 @@ const grid=document.getElementById("productGrid"), search=document.getElementByI
 const money=n=>"৳"+n.toLocaleString("en-BD");
 
 function saveProducts(){localStorage.setItem("sgg-products",JSON.stringify(products));}
-function escHtml(x){return String(x??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));}
+function escHtml(x){return String(x??"").replace(/[&<>\"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));}
+function safeMediaUrl(url){
+ const v=String(url||"").trim();
+ return /^(https?:\/\/)/i.test(v)?v:"";
+}
+function productVideo(p){
+ const v=safeMediaUrl(p.video||"");
+ return v?`<video src="${escHtml(v)}" controls playsinline preload="metadata" style="width:100%;max-height:240px;border-radius:14px;background:#061426;object-fit:cover;margin-top:10px"></video>`:"";
+}
+async function uploadProductMedia(file,kind){
+ if(!file) return "";
+ if(!CLOUD_ENABLED||!sb) throw new Error("Supabase configuration is missing.");
+ const max=50*1024*1024;
+ if(file.size>max) throw new Error(`${kind==="video"?"Video":"Image"} is too large. Maximum 50 MB.`);
+ const session=await sb.auth.getSession();
+ const user=session.data?.session?.user;
+ if(!user) throw new Error("Admin session expired. Please login again.");
+ const admin=await sb.from("admins").select("user_id").eq("user_id",user.id).maybeSingle();
+ if(admin.error||!admin.data) throw new Error("Only an admin can upload product media.");
+ const ext=(file.name.split(".").pop()|| (kind==="video"?"mp4":"jpg")).toLowerCase().replace(/[^a-z0-9]/g,"") || (kind==="video"?"mp4":"jpg");
+ const safeName=String(file.name||kind).replace(/[^a-zA-Z0-9._-]/g,"-").replace(/-+/g,"-").slice(-70);
+ const path=`products/${Date.now()}-${crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)}-${safeName||kind+"."+ext}`;
+ const {error}=await sb.storage.from("product-images").upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type||undefined});
+ if(error) throw new Error(error.message);
+ const pub=sb.storage.from("product-images").getPublicUrl(path);
+ const url=pub.data?.publicUrl||pub.publicURL||"";
+ if(!url) throw new Error("Upload succeeded, but public URL could not be created.");
+ return url;
+}
 function refreshCategories(){
  const cats=[...new Set(products.map(p=>p.cat).filter(Boolean))].sort();
  const current=category.value||"all";
@@ -479,7 +507,7 @@ function refreshCategories(){
  category.value=cats.includes(current)?current:"all";
 }
 function productVisual(p){
- return p.image?`<img src="${escHtml(p.image)}" alt="${escHtml(p.name)}">`:escHtml(p.icon||"📦");
+ return p.image?`<img src="${escHtml(safeMediaUrl(p.image)||p.image)}" alt="${escHtml(p.name)}">`:escHtml(p.icon||"📦");
 }
 function renderProductsAdmin(){
  const box=document.getElementById("productsAdminContent");
@@ -494,7 +522,20 @@ function renderProductsAdmin(){
    <div><label>Badge</label><input id="prodBadge" placeholder="New / Popular / Sale"></div>
    <div><label>Icon / Emoji</label><input id="prodIcon" placeholder="📱"></div>
    <div><label>Rating</label><input id="prodRating" type="number" min="0" max="5" step="0.1" value="5"></div>
-   <div class="full"><label>Image URL (optional)</label><input id="prodImage" placeholder="https://.../product.jpg"></div>
+   <div class="full" style="padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--bg)">
+     <label>Product Image</label>
+     <input id="prodImageFile" type="file" accept="image/*" style="width:100%">
+     <small class="muted">📷 আপনার computer/phone থেকে সরাসরি ছবি নির্বাচন করুন। সর্বোচ্চ 50 MB.</small>
+     <div id="prodImageStatus" class="muted" style="margin-top:6px"></div>
+   </div>
+   <div class="full" style="padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--bg)">
+     <label>Product Video (optional)</label>
+     <input id="prodVideoFile" type="file" accept="video/*" style="width:100%">
+     <small class="muted">🎥 চাইলে product video-ও সরাসরি upload করতে পারবেন। সর্বোচ্চ 50 MB.</small>
+     <div id="prodVideoStatus" class="muted" style="margin-top:6px"></div>
+   </div>
+   <div class="full"><label>Current Image URL (optional)</label><input id="prodImage" placeholder="Existing image URL / leave blank for new upload"></div>
+   <div class="full"><label>Current Video URL (optional)</label><input id="prodVideo" placeholder="Existing video URL / leave blank for new upload"></div>
    <div class="full"><label>Description</label><textarea id="prodDesc" rows="2" placeholder="Product description"></textarea></div>
    <div class="full product-admin-actions">
      <button class="btn btn-blue" type="submit" id="saveProductBtn">➕ Add Product</button>
@@ -505,9 +546,11 @@ function renderProductsAdmin(){
  </div>`;
  document.getElementById("productForm").onsubmit=saveProductFromForm;
  document.getElementById("cancelEditBtn").onclick=resetProductForm;
+ document.getElementById("prodImageFile").onchange=e=>{const f=e.target.files?.[0];document.getElementById("prodImageStatus").textContent=f?`Selected: ${f.name}`:"";};
+ document.getElementById("prodVideoFile").onchange=e=>{const f=e.target.files?.[0];document.getElementById("prodVideoStatus").textContent=f?`Selected: ${f.name}`:"";};
  const list=document.getElementById("productAdminList");
  list.innerHTML=products.length?products.map(p=>`<div class="admin-product-card">
-   <div class="admin-product-image">${productVisual(p)}</div>
+   <div class="admin-product-image">${productVisual(p)}${productVideo(p)}</div>
    <div><b>${escHtml(p.name)}</b><div class="muted">${money(Number(p.price)||0)} • ${escHtml(p.cat)} • ${escHtml(p.badge||"")}</div><small>${escHtml(p.desc||"")}</small></div>
    <div class="product-admin-actions"><button class="btn btn-soft" onclick="editProduct(${p.id})">✏️ Edit</button><button class="btn btn-soft" onclick="deleteProduct(${p.id})">🗑️ Delete</button></div>
  </div>`).join(""):'<p class="muted">No products available.</p>';
@@ -515,7 +558,14 @@ function renderProductsAdmin(){
 async function saveProductFromForm(e){
  e.preventDefault();
  const id=Number(document.getElementById("editProductId").value);
- const data={
+ const imageFile=document.getElementById("prodImageFile")?.files?.[0]||null;
+ const videoFile=document.getElementById("prodVideoFile")?.files?.[0]||null;
+ const saveBtn=document.getElementById("saveProductBtn");
+ if(saveBtn){saveBtn.disabled=true;saveBtn.textContent="Uploading media...";}
+ try{
+  const uploadedImage=imageFile?await uploadProductMedia(imageFile,"image"):"";
+  const uploadedVideo=videoFile?await uploadProductMedia(videoFile,"video"):"";
+  const data={
    name:document.getElementById("prodName").value.trim(),
    price:Number(document.getElementById("prodPrice").value)||0,
    cat:document.getElementById("prodCat").value.trim().toLowerCase(),
@@ -523,8 +573,11 @@ async function saveProductFromForm(e){
    icon:document.getElementById("prodIcon").value.trim()||"📦",
    rating:document.getElementById("prodRating").value||"5",
    image:document.getElementById("prodImage").value.trim(),
+   video:document.getElementById("prodVideo").value.trim(),
    desc:document.getElementById("prodDesc").value.trim()||"Quality gadget from Smart Gadget Gallery."
- };
+  };
+  if(uploadedImage)data.image=uploadedImage;
+  if(uploadedVideo)data.video=uploadedVideo;
  if(id){
    const idx=products.findIndex(p=>p.id===id);
    if(idx>=0){products[idx]={...products[idx],...data};toast("Product updated successfully.");}
@@ -535,10 +588,16 @@ async function saveProductFromForm(e){
  }
  saveProducts();refreshCategories();render();renderProductsAdmin();resetProductForm();
  if(CLOUD_ENABLED){
-   const row={name:data.name,category:data.cat,price:data.price,icon:data.icon,badge:data.badge,rating:Number(data.rating)||5,image_url:data.image||null,description:data.desc,active:true};
+   const row={name:data.name,category:data.cat,price:data.price,icon:data.icon,badge:data.badge,rating:Number(data.rating)||5,image_url:data.image||null,video_url:data.video||null,description:data.desc,active:true};
    const result=id?await sb.from("products").update(row).eq("id",id):await sb.from("products").insert(row);
    if(result.error) toast("Cloud product save failed: "+result.error.message);
    await cloudLoadProducts(); renderProductsAdmin();
+ }
+ }catch(err){
+   console.error("Product media/save failed:",err);
+   toast("Product save failed: "+(err?.message||String(err)));
+ }finally{
+   if(saveBtn){saveBtn.disabled=false;saveBtn.textContent=id?"💾 Update Product":"➕ Add Product";}
  }
 }
 function editProduct(id){
@@ -551,6 +610,11 @@ function editProduct(id){
  document.getElementById("prodIcon").value=p.icon||"";
  document.getElementById("prodRating").value=p.rating||"5";
  document.getElementById("prodImage").value=p.image||"";
+ document.getElementById("prodVideo").value=p.video||"";
+ document.getElementById("prodImageFile").value="";
+ document.getElementById("prodVideoFile").value="";
+ document.getElementById("prodImageStatus").textContent=p.image?"Current image is set. Choose a new file only if you want to replace it.":"";
+ document.getElementById("prodVideoStatus").textContent=p.video?"Current video is set. Choose a new file only if you want to replace it.":"";
  document.getElementById("prodDesc").value=p.desc||"";
  document.getElementById("saveProductBtn").textContent="💾 Update Product";
  document.getElementById("cancelEditBtn").style.display="inline-flex";
@@ -559,6 +623,8 @@ function editProduct(id){
 function resetProductForm(){
  const f=document.getElementById("productForm"); if(!f)return;
  f.reset();document.getElementById("editProductId").value="";
+ document.getElementById("prodImage").value="";document.getElementById("prodVideo").value="";
+ document.getElementById("prodImageStatus").textContent="";document.getElementById("prodVideoStatus").textContent="";
  document.getElementById("prodRating").value="5";
  document.getElementById("saveProductBtn").textContent="➕ Add Product";
  document.getElementById("cancelEditBtn").style.display="none";
@@ -574,7 +640,7 @@ async function deleteProduct(id){
 function render(){
  const q=search.value.toLowerCase(), c=category.value;
  const list=products.filter(p=>(c==="all"||p.cat===c)&&(`${p.name} ${p.desc}`.toLowerCase().includes(q)));
- grid.innerHTML=list.length?list.map(p=>`<article class="product"><span class="badge">${escHtml(p.badge||"New")}</span><div class="product-visual">${productVisual(p)}</div><h3>${escHtml(p.name)}</h3><p>${escHtml(p.desc||"")}</p><div class="rating">★★★★★ <span style="color:var(--muted)">${escHtml(p.rating||"5")}</span></div><div class="price">${money(Number(p.price)||0)}</div><div class="product-actions"><button class="btn btn-soft" onclick="details(${p.id})">Details</button><button class="btn btn-blue" onclick="addToCart(${p.id})">Add to cart</button></div></article>`).join(""):`<div style="grid-column:1/-1;text-align:center;padding:50px" class="muted">No products found.</div>`;
+ grid.innerHTML=list.length?list.map(p=>`<article class="product"><span class="badge">${escHtml(p.badge||"New")}</span><div class="product-visual">${productVisual(p)}</div>${productVideo(p)}<h3>${escHtml(p.name)}</h3><p>${escHtml(p.desc||"")}</p><div class="rating">★★★★★ <span style="color:var(--muted)">${escHtml(p.rating||"5")}</span></div><div class="price">${money(Number(p.price)||0)}</div><div class="product-actions"><button class="btn btn-soft" onclick="details(${p.id})">Details</button><button class="btn btn-blue" onclick="addToCart(${p.id})">Add to cart</button></div></article>`).join(""):`<div style="grid-column:1/-1;text-align:center;padding:50px" class="muted">No products found.</div>`;
 }
 function addToCart(id){const p=products.find(x=>x.id===id);cart.push(p);save();toast(`${p.name} added to cart`)}
 function save(){localStorage.setItem("sgg-cart",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.length}
