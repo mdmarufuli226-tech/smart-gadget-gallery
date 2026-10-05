@@ -120,158 +120,6 @@ footer{background:linear-gradient(180deg,var(--card),rgba(7,20,38,.98));}
 @media(max-width:850px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.admin-tools{grid-template-columns:1fr 1fr}.admin-tools .wide{grid-column:1/-1}}
 @media(max-width:600px){.admin-kpis{grid-template-columns:1fr 1fr}.admin-hero{flex-direction:column}.admin-dashboard .admin-hero h2{font-size:23px}.admin-tools{grid-template-columns:1fr}.admin-tools .wide{grid-column:auto}.order-detail-grid{grid-template-columns:1fr}.order-success-actions{grid-template-columns:1fr}}
 
-
-/* Premium checkout modal */
-#orderModal .checkout-modal{
-  width:min(1180px,96vw);
-  max-width:1180px;
-  max-height:92vh;
-  overflow:auto;
-  padding:0;
-  border:1px solid rgba(37,99,235,.18);
-  border-radius:26px;
-  background:#f6faff;
-  box-shadow:0 30px 90px rgba(7,20,38,.30);
-}
-.checkout-head{
-  background:linear-gradient(135deg,#061a38 0%,#0b3976 55%,#0b8eea 100%);
-  color:#fff;
-  padding:24px 30px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-.checkout-brand{display:flex;align-items:center;gap:14px}
-.checkout-brand-badge{
-  width:54px;height:54px;border-radius:16px;
-  display:grid;place-items:center;
-  border:2px solid #20cfff;
-  background:rgba(255,255,255,.08);
-  font-weight:950;font-size:20px;
-}
-.checkout-title{font-size:25px;font-weight:950;letter-spacing:-.02em}
-.checkout-subtitle{font-size:13px;opacity:.82;margin-top:4px}
-.checkout-close{
-  width:42px;height:42px;border:1px solid rgba(255,255,255,.28);
-  border-radius:13px;background:rgba(255,255,255,.10);color:#fff;
-  font-size:25px;cursor:pointer;
-}
-.checkout-body{
-  padding:24px;
-  display:grid;
-  grid-template-columns:minmax(0,1.45fr) minmax(340px,.85fr);
-  gap:20px;
-}
-.checkout-card{
-  background:#fff;
-  border:1px solid #dbeafe;
-  border-radius:22px;
-  padding:24px;
-  box-shadow:0 10px 30px rgba(15,55,100,.07);
-}
-.checkout-section-title{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.checkout-icon{
-  width:46px;height:46px;border-radius:14px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#0b58b6,#11a7f5);color:#fff;font-size:22px;
-}
-.checkout-section-title h3{margin:0;color:#0b3670;font-size:21px}
-.checkout-section-title p{margin:3px 0 0;color:#64748b;font-size:13px}
-.checkout-form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.checkout-field{display:flex;flex-direction:column;gap:7px}
-.checkout-field.full{grid-column:1/-1}
-.checkout-label{font-size:13px;font-weight:850;color:#123b70}
-.checkout-label .req{color:#ef4444}
-.checkout-input,.checkout-select,.checkout-textarea{
-  width:100%;box-sizing:border-box;
-  border:1px solid #cfe0f5;border-radius:13px;
-  background:#fbfdff;color:#102f55;
-  padding:13px 14px;font:inherit;outline:none;
-  transition:.2s;
-}
-.checkout-input:focus,.checkout-select:focus,.checkout-textarea:focus{
-  border-color:#1598ee;box-shadow:0 0 0 4px rgba(21,152,238,.10);background:#fff;
-}
-.checkout-textarea{min-height:112px;resize:vertical}
-.checkout-note{
-  margin-top:18px;padding:13px 15px;border-radius:14px;
-  background:linear-gradient(135deg,#eff8ff,#f7fbff);
-  border:1px solid #d8ebff;color:#355b85;font-size:12px;
-  display:flex;gap:10px;align-items:flex-start;
-}
-.checkout-place{
-  width:100%;margin-top:18px;border:0;border-radius:15px;
-  padding:15px 18px;font-size:16px;font-weight:900;color:#fff;
-  background:linear-gradient(100deg,#0864d5,#0b9cf0);
-  box-shadow:0 10px 24px rgba(8,100,213,.24);cursor:pointer;
-}
-.checkout-secure{text-align:center;color:#71839a;font-size:12px;margin-top:10px}
-.checkout-summary{
-  background:linear-gradient(180deg,#fff,#f8fbff);
-  overflow:hidden;
-}
-.checkout-summary-head{
-  margin:-24px -24px 18px;
-  padding:18px 20px;
-  background:linear-gradient(135deg,#06285c,#0b5db6);
-  color:#fff;
-  display:flex;justify-content:space-between;align-items:center;
-}
-.checkout-summary-head h3{margin:0;font-size:20px}
-.checkout-items{display:flex;flex-direction:column;gap:12px}
-.checkout-item{
-  display:grid;grid-template-columns:52px 1fr auto;gap:12px;align-items:center;
-  padding:12px 0;border-bottom:1px solid #e5eef8;
-}
-.checkout-item:last-child{border-bottom:0}
-.checkout-thumb{
-  width:52px;height:52px;border-radius:14px;display:grid;place-items:center;
-  background:linear-gradient(135deg,#eef6ff,#dceeff);
-  border:1px solid #d7e8fb;font-size:25px;
-}
-.checkout-item-name{font-weight:850;color:#123b70;font-size:14px}
-.checkout-item-meta{font-size:12px;color:#71839a;margin-top:3px}
-.checkout-item-price{text-align:right;font-weight:900;color:#123b70;font-size:14px}
-.checkout-totals{border-top:1px solid #dce8f5;margin-top:14px;padding-top:14px}
-.checkout-total-row{display:flex;justify-content:space-between;padding:6px 0;color:#49647f}
-.checkout-total-row strong{color:#123b70}
-.checkout-total{
-  margin-top:8px;padding:15px;border-radius:15px;
-  background:linear-gradient(100deg,#073d83,#0b7edc);
-  color:#fff;display:flex;justify-content:space-between;align-items:center;
-  font-size:19px;font-weight:950;
-}
-.checkout-benefits{
-  margin-top:15px;padding:15px;border-radius:15px;
-  background:#eef7ff;border:1px solid #d6ebff;
-}
-.checkout-benefits b{color:#0b5bb5}
-.checkout-benefits div{margin-top:8px;font-size:12px;color:#416487}
-.checkout-delivery-note{
-  margin-top:12px;padding:13px;border-radius:14px;
-  background:#f3faff;border:1px solid #d7edff;color:#28618e;font-size:12px;line-height:1.5;
-}
-.checkout-footer{
-  background:#061d3d;color:#fff;padding:17px 24px;
-  display:flex;justify-content:space-between;align-items:center;gap:15px;
-  font-size:12px;
-}
-.checkout-footer b{font-size:14px}
-@media(max-width:850px){
-  #orderModal .checkout-modal{width:96vw}
-  .checkout-body{grid-template-columns:1fr;padding:16px}
-  .checkout-head{padding:18px 20px}
-}
-@media(max-width:600px){
-  .checkout-form-grid{grid-template-columns:1fr}
-  .checkout-field.full{grid-column:auto}
-  .checkout-card{padding:17px}
-  .checkout-summary-head{margin:-17px -17px 15px}
-  .checkout-footer{flex-direction:column;align-items:flex-start}
-}
-
-
-.customer-note-box{margin-top:8px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--bg);color:var(--text);font-size:12px;line-height:1.55}
 </style>
 </head>
 <body>
@@ -354,93 +202,10 @@ footer{background:linear-gradient(180deg,var(--card),rgba(7,20,38,.98));}
 
 <div class="modal" id="cartModal"><div class="modal-box"><div class="modal-head"><h2>Your Cart</h2><button class="close" id="closeCart">×</button></div><div id="cartItems" class="muted">Your cart is empty.</div><div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center"><b>Total: <span id="cartTotal">৳0</span></b><button class="btn btn-blue" id="checkoutBtn">Place Order</button></div></div></div>
 
-<div class="modal" id="orderModal">
-<div class="modal-box checkout-modal">
-  <div class="checkout-head">
-    <div class="checkout-brand">
-      <div class="checkout-brand-badge">SGG</div>
-      <div><div class="checkout-title">Complete Your Order</div><div class="checkout-subtitle">Smart Gadget Gallery • Premium & Secure Checkout</div></div>
-    </div>
-    <button class="checkout-close" id="closeOrder" aria-label="Close">×</button>
-  </div>
-  <form id="orderForm">
-    <div class="checkout-body">
-      <div class="checkout-card">
-        <div class="checkout-section-title">
-          <div class="checkout-icon">👤</div>
-          <div><h3>Customer Information</h3><p>Please enter your details to complete the order.</p></div>
-        </div>
-        <div class="checkout-form-grid">
-          <div class="checkout-field">
-            <label class="checkout-label">Full Name <span class="req">*</span></label>
-            <input class="checkout-input" id="custName" placeholder="e.g. Md. Rahim Hossain" required>
-          </div>
-          <div class="checkout-field">
-            <label class="checkout-label">Mobile Number <span class="req">*</span></label>
-            <input class="checkout-input" id="custPhone" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" required>
-          </div>
-          <div class="checkout-field full">
-            <label class="checkout-label">Detailed Delivery Address <span class="req">*</span></label>
-            <textarea class="checkout-textarea" id="custAddress" placeholder="House No., Road No., Area, Landmark" required></textarea>
-          </div>
-          <div class="checkout-field full">
-            <label class="checkout-label">City / District <span class="req">*</span></label>
-            <select class="checkout-select" id="custCity" required>
-              <option value="">Select your city / district</option>
-              <option>Dhaka</option><option>Chattogram</option><option>Sylhet</option><option>Rajshahi</option>
-              <option>Khulna</option><option>Barishal</option><option>Rangpur</option><option>Mymensingh</option>
-              <option>Gazipur</option><option>Narayanganj</option><option>Cumilla</option><option>Other</option>
-            </select>
-          </div>
-          <div class="checkout-field full">
-            <label class="checkout-label">Payment Method <span class="req">*</span></label>
-            <select class="checkout-select" id="paymentMethod" required>
-              <option value="">Select payment method</option>
-              <option value="Cash on Delivery">💵 Cash on Delivery</option>
-              <option value="bKash">📱 bKash</option>
-              <option value="Nagad">📱 Nagad</option>
-              <option value="Rocket">📱 Rocket</option>
-              <option value="Dutch-Bangla Bank">🏦 Dutch-Bangla Bank</option>
-            </select>
-            <div id="paymentDetails" style="display:none;margin-top:10px;padding:12px 14px;border:1px solid #bfdbfe;border-radius:12px;background:#eff6ff;color:#173b70;line-height:1.65;font-size:13px"></div>
-          </div>
-          <div class="checkout-field full">
-            <label class="checkout-label">Customer Note <span style="font-weight:500;color:var(--muted)">(Optional)</span></label>
-            <textarea class="checkout-textarea" id="custNote" maxlength="500" placeholder="Any special instruction for your order? e.g. Call before delivery, preferred delivery time..."></textarea>
-            <div style="font-size:11px;color:var(--muted);text-align:right;margin-top:4px">Optional • Maximum 500 characters</div>
-          </div>
-        </div>
-        <div class="checkout-note">🔒 <span>Your information is used only to process and deliver your order. Please make sure your phone number and address are correct.</span></div>
-        <button class="checkout-place" type="submit">🛒 &nbsp; Place Order &nbsp; →</button>
-        <div class="checkout-secure">🔐 Secure order • Fast & Safe Delivery • Dedicated Support</div>
-      </div>
-
-      <div class="checkout-card checkout-summary">
-        <div class="checkout-summary-head">
-          <h3>🛍️ Order Summary</h3><span id="checkoutItemCount" style="font-size:12px;font-weight:800;background:rgba(255,255,255,.14);padding:7px 10px;border-radius:999px">0 Items</span>
-        </div>
-        <div id="checkoutItems" class="checkout-items"></div>
-        <div class="checkout-totals">
-          <div class="checkout-total-row"><span>Subtotal</span><strong id="checkoutSubtotal">৳0</strong></div>
-          <div class="checkout-total-row"><span>Delivery Charge</span><strong>৳0</strong></div>
-          <div class="checkout-total"><span>Total</span><span id="checkoutGrandTotal">৳0</span></div>
-        </div>
-        <div class="checkout-benefits">
-          <b>✓ Why Shop With Us?</b>
-          <div>✓ 100% Original Products</div>
-          <div>✓ Fast & Safe Delivery</div>
-          <div>✓ Dedicated Customer Support</div>
-        </div>
-        <div class="checkout-delivery-note">🚚 Your order will be delivered to the address you provide at checkout. Thank you for shopping with us!</div>
-      </div>
-    </div>
-    <div class="checkout-footer"><div><b>Smart Gadget Gallery</b><br>Premium Gadgets & Accessories</div><div>📞 01987046529 &nbsp; • &nbsp; 💬 WhatsApp Support</div></div>
-  </form>
-</div>
-</div>
+<div class="modal" id="orderModal"><div class="modal-box"><div class="modal-head"><h2>Customer Order</h2><button class="close" id="closeOrder">×</button></div><p class="muted">Enter your name, phone number and delivery address. Your order will be saved securely online.</p><form id="orderForm"><input class="field" id="custName" placeholder="Customer name" required style="margin-top:10px"><input class="field" id="custPhone" placeholder="Phone number" required style="margin-top:10px"><textarea class="field" id="custAddress" placeholder="Delivery address" required style="margin-top:10px;min-height:90px"></textarea><select class="field" id="custPaymentMethod" required style="margin-top:10px"><option value="">Select Payment Method</option><option>Cash on Delivery</option><option>bKash</option><option>Nagad</option><option>Rocket</option></select><textarea class="field" id="custNote" placeholder="Customer Note (optional)" style="margin-top:10px;min-height:70px"></textarea><button class="btn btn-blue" style="width:100%;margin-top:12px">Confirm Order</button></form></div></div>
 <div class="modal" id="orderSuccessModal"><div class="modal-box" style="max-width:560px"><div class="order-success-box"><button class="close" id="closeOrderSuccess" style="position:absolute;right:24px;top:18px">×</button><div class="order-success-icon">✓</div><h2 style="margin:0">Order Confirmed!</h2><p class="muted" style="margin:5px 0 0">Your order has been saved successfully.</p><div class="order-id-box"><code id="successOrderId">SGG-XXXXXX</code><button class="btn btn-soft" id="copyOrderId">📋 Copy</button></div><div id="successOrderSummary" class="panel" style="padding:14px;text-align:left"></div><div class="order-success-actions"><button class="btn btn-blue" id="downloadInvoiceBtn">📄 Download Invoice PDF</button><button class="btn btn-soft" id="successTrackBtn">🔎 Track My Order</button><button class="btn btn-primary full" id="closeSuccessBtn">Done</button></div></div></div></div>
 <div class="modal" id="orderDetailModal"><div class="modal-box" style="max-width:680px;max-height:90vh;overflow:auto"><div class="modal-head"><h2>Order Details</h2><button class="close" id="closeOrderDetail">×</button></div><div id="orderDetailContent"></div></div></div>
-<div class="modal" id="editOrderModal"><div class="modal-box" style="max-width:620px;max-height:92vh;overflow:auto"><div class="modal-head"><h2>✏️ Edit Order</h2><button class="close" id="closeEditOrder">×</button></div><form id="editOrderForm" style="display:grid;gap:12px"><input type="hidden" id="editOrderId"><label>Customer Name<input class="input" id="editCustomerName" required></label><label>Phone Number<input class="input" id="editCustomerPhone" required></label><label>Delivery Address<textarea class="input" id="editCustomerAddress" rows="3" required></textarea></label><label>Payment Method<select class="input" id="editPaymentMethod"><option>Cash on Delivery</option><option>bKash</option><option>Nagad</option><option>Rocket</option></select></label><label>Customer Note<textarea class="input" id="editCustomerNote" rows="3" placeholder="Customer-er note..."></textarea></label><label style="padding:12px;border:1px solid #bfdbfe;border-radius:12px;background:#eff6ff">📝 Admin Private Note<textarea class="input" id="editAdminNote" rows="4" placeholder="Shudhu admin-er jonno note likhun..." style="margin-top:7px"></textarea><small class="muted">Ei note customer checkout/invoice-e dekhabe na.</small></label><div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="btn btn-soft" id="cancelEditOrder">Cancel</button><button type="submit" class="btn btn-blue">💾 Save Changes</button></div></form></div></div>
+<div class="modal" id="editOrderModal"><div class="modal-box" style="max-width:620px;max-height:90vh;overflow:auto"><div class="modal-head"><h2>✏️ Edit Order</h2><button class="close" id="closeEditOrder">×</button></div><form id="editOrderForm"><input type="hidden" id="editOrderId"><label>Customer Name</label><input class="field" id="editCustomerName" required style="margin-top:6px"><label style="display:block;margin-top:10px">Phone Number</label><input class="field" id="editPhone" required style="margin-top:6px"><label style="display:block;margin-top:10px">Delivery Address</label><textarea class="field" id="editAddress" required style="margin-top:6px;min-height:80px"></textarea><label style="display:block;margin-top:10px">Payment Method</label><select class="field" id="editPaymentMethod" style="margin-top:6px"><option>Cash on Delivery</option><option>bKash</option><option>Nagad</option><option>Rocket</option></select><label style="display:block;margin-top:10px">Customer Note</label><textarea class="field" id="editCustomerNote" style="margin-top:6px;min-height:70px"></textarea><label style="display:block;margin-top:10px">🔒 Admin Private Note</label><textarea class="field" id="editAdminNote" placeholder="Only you can see this note" style="margin-top:6px;min-height:90px"></textarea><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button type="button" class="btn btn-soft" id="cancelEditOrder">Cancel</button><button type="submit" class="btn btn-blue">💾 Save Changes</button></div></form></div></div>
 <div class="modal" id="adminModal"><div class="modal-box" style="max-width:1100px;max-height:92vh;overflow:auto">
 <div class="modal-head"><h2>📊 Admin Dashboard</h2><button class="close" id="closeAdmin">×</button></div>
 <div style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0 14px">
@@ -480,7 +245,7 @@ async function cloudLoadProducts(){
    const {data,error}=await sb.from("products").select("*").eq("active",true).order("id",{ascending:false});
    if(error){ console.error("Cloud product load failed:",error); return; }
    if(Array.isArray(data)&&data.length){
-     products=data.map(p=>({id:p.id,name:p.name,cat:p.category,price:Number(p.price),icon:p.icon||"📦",badge:p.badge||"New",desc:p.description||"",rating:p.rating||"5",image:p.image_url||"",video:p.video_url||""}));
+     products=data.map(p=>({id:p.id,name:p.name,cat:p.category,price:Number(p.price),icon:p.icon||"📦",badge:p.badge||"New",desc:p.description||"",rating:p.rating||"5",image:p.image_url||""}));
      localStorage.setItem("sgg-products",JSON.stringify(products)); refreshCategories(); render();
    }
  }catch(err){ console.error("Cloud product load exception:",err); }
@@ -491,35 +256,7 @@ const grid=document.getElementById("productGrid"), search=document.getElementByI
 const money=n=>"৳"+n.toLocaleString("en-BD");
 
 function saveProducts(){localStorage.setItem("sgg-products",JSON.stringify(products));}
-function escHtml(x){return String(x??"").replace(/[&<>\"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));}
-function safeMediaUrl(url){
- const v=String(url||"").trim();
- return /^(https?:\/\/)/i.test(v)?v:"";
-}
-function productVideo(p){
- const v=safeMediaUrl(p.video||"");
- return v?`<video src="${escHtml(v)}" controls playsinline preload="metadata" style="width:100%;max-height:240px;border-radius:14px;background:#061426;object-fit:cover;margin-top:10px"></video>`:"";
-}
-async function uploadProductMedia(file,kind){
- if(!file) return "";
- if(!CLOUD_ENABLED||!sb) throw new Error("Supabase configuration is missing.");
- const max=50*1024*1024;
- if(file.size>max) throw new Error(`${kind==="video"?"Video":"Image"} is too large. Maximum 50 MB.`);
- const session=await sb.auth.getSession();
- const user=session.data?.session?.user;
- if(!user) throw new Error("Admin session expired. Please login again.");
- const admin=await sb.from("admins").select("user_id").eq("user_id",user.id).maybeSingle();
- if(admin.error||!admin.data) throw new Error("Only an admin can upload product media.");
- const ext=(file.name.split(".").pop()|| (kind==="video"?"mp4":"jpg")).toLowerCase().replace(/[^a-z0-9]/g,"") || (kind==="video"?"mp4":"jpg");
- const safeName=String(file.name||kind).replace(/[^a-zA-Z0-9._-]/g,"-").replace(/-+/g,"-").slice(-70);
- const path=`products/${Date.now()}-${crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)}-${safeName||kind+"."+ext}`;
- const {error}=await sb.storage.from("product-images").upload(path,file,{cacheControl:"3600",upsert:false,contentType:file.type||undefined});
- if(error) throw new Error(error.message);
- const pub=sb.storage.from("product-images").getPublicUrl(path);
- const url=pub.data?.publicUrl||pub.publicURL||"";
- if(!url) throw new Error("Upload succeeded, but public URL could not be created.");
- return url;
-}
+function escHtml(x){return String(x??"").replace(/[&<>"]/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[m]));}
 function refreshCategories(){
  const cats=[...new Set(products.map(p=>p.cat).filter(Boolean))].sort();
  const current=category.value||"all";
@@ -527,7 +264,7 @@ function refreshCategories(){
  category.value=cats.includes(current)?current:"all";
 }
 function productVisual(p){
- return p.image?`<img src="${escHtml(safeMediaUrl(p.image)||p.image)}" alt="${escHtml(p.name)}">`:escHtml(p.icon||"📦");
+ return p.image?`<img src="${escHtml(p.image)}" alt="${escHtml(p.name)}">`:escHtml(p.icon||"📦");
 }
 function renderProductsAdmin(){
  const box=document.getElementById("productsAdminContent");
@@ -542,20 +279,7 @@ function renderProductsAdmin(){
    <div><label>Badge</label><input id="prodBadge" placeholder="New / Popular / Sale"></div>
    <div><label>Icon / Emoji</label><input id="prodIcon" placeholder="📱"></div>
    <div><label>Rating</label><input id="prodRating" type="number" min="0" max="5" step="0.1" value="5"></div>
-   <div class="full" style="padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--bg)">
-     <label>Product Image</label>
-     <input id="prodImageFile" type="file" accept="image/*" style="width:100%">
-     <small class="muted">📷 আপনার computer/phone থেকে সরাসরি ছবি নির্বাচন করুন। সর্বোচ্চ 50 MB.</small>
-     <div id="prodImageStatus" class="muted" style="margin-top:6px"></div>
-   </div>
-   <div class="full" style="padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--bg)">
-     <label>Product Video (optional)</label>
-     <input id="prodVideoFile" type="file" accept="video/*" style="width:100%">
-     <small class="muted">🎥 চাইলে product video-ও সরাসরি upload করতে পারবেন। সর্বোচ্চ 50 MB.</small>
-     <div id="prodVideoStatus" class="muted" style="margin-top:6px"></div>
-   </div>
-   <div class="full"><label>Current Image URL (optional)</label><input id="prodImage" placeholder="Existing image URL / leave blank for new upload"></div>
-   <div class="full"><label>Current Video URL (optional)</label><input id="prodVideo" placeholder="Existing video URL / leave blank for new upload"></div>
+   <div class="full"><label>Image URL (optional)</label><input id="prodImage" placeholder="https://.../product.jpg"></div>
    <div class="full"><label>Description</label><textarea id="prodDesc" rows="2" placeholder="Product description"></textarea></div>
    <div class="full product-admin-actions">
      <button class="btn btn-blue" type="submit" id="saveProductBtn">➕ Add Product</button>
@@ -566,11 +290,9 @@ function renderProductsAdmin(){
  </div>`;
  document.getElementById("productForm").onsubmit=saveProductFromForm;
  document.getElementById("cancelEditBtn").onclick=resetProductForm;
- document.getElementById("prodImageFile").onchange=e=>{const f=e.target.files?.[0];document.getElementById("prodImageStatus").textContent=f?`Selected: ${f.name}`:"";};
- document.getElementById("prodVideoFile").onchange=e=>{const f=e.target.files?.[0];document.getElementById("prodVideoStatus").textContent=f?`Selected: ${f.name}`:"";};
  const list=document.getElementById("productAdminList");
  list.innerHTML=products.length?products.map(p=>`<div class="admin-product-card">
-   <div class="admin-product-image">${productVisual(p)}${productVideo(p)}</div>
+   <div class="admin-product-image">${productVisual(p)}</div>
    <div><b>${escHtml(p.name)}</b><div class="muted">${money(Number(p.price)||0)} • ${escHtml(p.cat)} • ${escHtml(p.badge||"")}</div><small>${escHtml(p.desc||"")}</small></div>
    <div class="product-admin-actions"><button class="btn btn-soft" onclick="editProduct(${p.id})">✏️ Edit</button><button class="btn btn-soft" onclick="deleteProduct(${p.id})">🗑️ Delete</button></div>
  </div>`).join(""):'<p class="muted">No products available.</p>';
@@ -578,14 +300,7 @@ function renderProductsAdmin(){
 async function saveProductFromForm(e){
  e.preventDefault();
  const id=Number(document.getElementById("editProductId").value);
- const imageFile=document.getElementById("prodImageFile")?.files?.[0]||null;
- const videoFile=document.getElementById("prodVideoFile")?.files?.[0]||null;
- const saveBtn=document.getElementById("saveProductBtn");
- if(saveBtn){saveBtn.disabled=true;saveBtn.textContent="Uploading media...";}
- try{
-  const uploadedImage=imageFile?await uploadProductMedia(imageFile,"image"):"";
-  const uploadedVideo=videoFile?await uploadProductMedia(videoFile,"video"):"";
-  const data={
+ const data={
    name:document.getElementById("prodName").value.trim(),
    price:Number(document.getElementById("prodPrice").value)||0,
    cat:document.getElementById("prodCat").value.trim().toLowerCase(),
@@ -593,11 +308,8 @@ async function saveProductFromForm(e){
    icon:document.getElementById("prodIcon").value.trim()||"📦",
    rating:document.getElementById("prodRating").value||"5",
    image:document.getElementById("prodImage").value.trim(),
-   video:document.getElementById("prodVideo").value.trim(),
    desc:document.getElementById("prodDesc").value.trim()||"Quality gadget from Smart Gadget Gallery."
-  };
-  if(uploadedImage)data.image=uploadedImage;
-  if(uploadedVideo)data.video=uploadedVideo;
+ };
  if(id){
    const idx=products.findIndex(p=>p.id===id);
    if(idx>=0){products[idx]={...products[idx],...data};toast("Product updated successfully.");}
@@ -608,16 +320,10 @@ async function saveProductFromForm(e){
  }
  saveProducts();refreshCategories();render();renderProductsAdmin();resetProductForm();
  if(CLOUD_ENABLED){
-   const row={name:data.name,category:data.cat,price:data.price,icon:data.icon,badge:data.badge,rating:Number(data.rating)||5,image_url:data.image||null,video_url:data.video||null,description:data.desc,active:true};
+   const row={name:data.name,category:data.cat,price:data.price,icon:data.icon,badge:data.badge,rating:Number(data.rating)||5,image_url:data.image||null,description:data.desc,active:true};
    const result=id?await sb.from("products").update(row).eq("id",id):await sb.from("products").insert(row);
    if(result.error) toast("Cloud product save failed: "+result.error.message);
    await cloudLoadProducts(); renderProductsAdmin();
- }
- }catch(err){
-   console.error("Product media/save failed:",err);
-   toast("Product save failed: "+(err?.message||String(err)));
- }finally{
-   if(saveBtn){saveBtn.disabled=false;saveBtn.textContent=id?"💾 Update Product":"➕ Add Product";}
  }
 }
 function editProduct(id){
@@ -630,11 +336,6 @@ function editProduct(id){
  document.getElementById("prodIcon").value=p.icon||"";
  document.getElementById("prodRating").value=p.rating||"5";
  document.getElementById("prodImage").value=p.image||"";
- document.getElementById("prodVideo").value=p.video||"";
- document.getElementById("prodImageFile").value="";
- document.getElementById("prodVideoFile").value="";
- document.getElementById("prodImageStatus").textContent=p.image?"Current image is set. Choose a new file only if you want to replace it.":"";
- document.getElementById("prodVideoStatus").textContent=p.video?"Current video is set. Choose a new file only if you want to replace it.":"";
  document.getElementById("prodDesc").value=p.desc||"";
  document.getElementById("saveProductBtn").textContent="💾 Update Product";
  document.getElementById("cancelEditBtn").style.display="inline-flex";
@@ -643,8 +344,6 @@ function editProduct(id){
 function resetProductForm(){
  const f=document.getElementById("productForm"); if(!f)return;
  f.reset();document.getElementById("editProductId").value="";
- document.getElementById("prodImage").value="";document.getElementById("prodVideo").value="";
- document.getElementById("prodImageStatus").textContent="";document.getElementById("prodVideoStatus").textContent="";
  document.getElementById("prodRating").value="5";
  document.getElementById("saveProductBtn").textContent="➕ Add Product";
  document.getElementById("cancelEditBtn").style.display="none";
@@ -660,7 +359,7 @@ async function deleteProduct(id){
 function render(){
  const q=search.value.toLowerCase(), c=category.value;
  const list=products.filter(p=>(c==="all"||p.cat===c)&&(`${p.name} ${p.desc}`.toLowerCase().includes(q)));
- grid.innerHTML=list.length?list.map(p=>`<article class="product"><span class="badge">${escHtml(p.badge||"New")}</span><div class="product-visual">${productVisual(p)}</div>${productVideo(p)}<h3>${escHtml(p.name)}</h3><p>${escHtml(p.desc||"")}</p><div class="rating">★★★★★ <span style="color:var(--muted)">${escHtml(p.rating||"5")}</span></div><div class="price">${money(Number(p.price)||0)}</div><div class="product-actions"><button class="btn btn-soft" onclick="details(${p.id})">Details</button><button class="btn btn-blue" onclick="addToCart(${p.id})">Add to cart</button></div></article>`).join(""):`<div style="grid-column:1/-1;text-align:center;padding:50px" class="muted">No products found.</div>`;
+ grid.innerHTML=list.length?list.map(p=>`<article class="product"><span class="badge">${escHtml(p.badge||"New")}</span><div class="product-visual">${productVisual(p)}</div><h3>${escHtml(p.name)}</h3><p>${escHtml(p.desc||"")}</p><div class="rating">★★★★★ <span style="color:var(--muted)">${escHtml(p.rating||"5")}</span></div><div class="price">${money(Number(p.price)||0)}</div><div class="product-actions"><button class="btn btn-soft" onclick="details(${p.id})">Details</button><button class="btn btn-blue" onclick="addToCart(${p.id})">Add to cart</button></div></article>`).join(""):`<div style="grid-column:1/-1;text-align:center;padding:50px" class="muted">No products found.</div>`;
 }
 function addToCart(id){const p=products.find(x=>x.id===id);cart.push(p);save();toast(`${p.name} added to cart`)}
 function save(){localStorage.setItem("sgg-cart",JSON.stringify(cart));document.getElementById("cartCount").textContent=cart.length}
@@ -675,60 +374,25 @@ function removeCart(i){cart.splice(i,1);save();renderCart()}
 function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove("show"),2200)}
 search.addEventListener("input",render);category.addEventListener("change",render);refreshCategories();render();save();
 document.getElementById("cartBtn").onclick=openCart;document.getElementById("closeCart").onclick=()=>document.getElementById("cartModal").classList.remove("open");
-function renderCheckoutSummary(){
- const box=document.getElementById("checkoutItems");
- const count=document.getElementById("checkoutItemCount");
- const sub=document.getElementById("checkoutSubtotal");
- const grand=document.getElementById("checkoutGrandTotal");
- const total=cart.reduce((s,p)=>s+(Number(p.price)||0),0);
- if(count) count.textContent=`${cart.length} ${cart.length===1?"Item":"Items"}`;
- if(sub) sub.textContent=money(total);
- if(grand) grand.textContent=money(total);
- if(!box) return;
- box.innerHTML=cart.length?cart.map(p=>`<div class="checkout-item">
-   <div class="checkout-thumb">${escHtml(p.icon||"🛍️")}</div>
-   <div><div class="checkout-item-name">${escHtml(p.name)}</div><div class="checkout-item-meta">Qty: 1</div></div>
-   <div class="checkout-item-price">${money(Number(p.price)||0)}</div>
- </div>`).join(""):`<div class="muted" style="padding:20px 0;text-align:center">Your cart is empty.</div>`;
-}
-
-const PAYMENT_DETAILS={
-  "bKash":"📱 <b>bKash Personal:</b> 01987046529<br><span style=\"font-size:12px;color:#54749e\">Send Money to this number, then place your order.</span>",
-  "Nagad":"📱 <b>Nagad Personal:</b> 01987046529<br><span style=\"font-size:12px;color:#54749e\">Send Money to this number, then place your order.</span>",
-  "Rocket":"📱 <b>Rocket:</b> 019870465296<br><span style=\"font-size:12px;color:#54749e\">Send Money to this number, then place your order.</span>",
-  "Dutch-Bangla Bank":"🏦 <b>Dutch-Bangla Bank Account:</b> 2927348926085<br><span style=\"font-size:12px;color:#54749e\">Bank transfer to this account, then place your order.</span>"
-};
-function updatePaymentDetails(){
- const method=document.getElementById("paymentMethod")?.value||"";
- const box=document.getElementById("paymentDetails");
- if(!box)return;
- box.innerHTML=PAYMENT_DETAILS[method]||"";
- box.style.display=PAYMENT_DETAILS[method]?"block":"none";
-}
-document.getElementById("paymentMethod")?.addEventListener("change",updatePaymentDetails);
-document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}renderCheckoutSummary();updatePaymentDetails();document.getElementById("orderModal").classList.add("open");};
+document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}document.getElementById("orderModal").classList.add("open");};
 document.getElementById("closeOrder").onclick=()=>document.getElementById("orderModal").classList.remove("open");
-document.getElementById("orderModal").addEventListener("click",e=>{if(e.target.id==="orderModal")e.currentTarget.classList.remove("open")});
-
 document.getElementById("orderForm").onsubmit=async e=>{
  e.preventDefault();
  if(!cart.length){toast("Your cart is empty.");return;}
  const name=document.getElementById("custName").value.trim();
  const phone=document.getElementById("custPhone").value.trim();
- const addressBase=document.getElementById("custAddress").value.trim();
- const city=document.getElementById("custCity").value.trim();
- const paymentMethod=document.getElementById("paymentMethod")?.value.trim()||"";
- const note=document.getElementById("custNote")?.value.trim()||"";
- const address=city ? `${addressBase}, ${city}` : addressBase;
+ const address=document.getElementById("custAddress").value.trim();
+ const paymentMethod=document.getElementById("custPaymentMethod").value;
+ const customerNote=document.getElementById("custNote").value.trim();
  const total=cart.reduce((s,p)=>s+(Number(p.price)||0),0);
  const id="SGG-"+(Date.now().toString(36).slice(-4)+Math.random().toString(36).slice(2,4)).toUpperCase();
  const items=cart.map(p=>({id:p.id,name:p.name,price:Number(p.price)||0}));
- const order={id,name,phone,address,paymentMethod,note,items,total,status:"Pending",createdAt:new Date().toISOString()};
+ const order={id,name,phone,address,items,total,status:"Pending",createdAt:new Date().toISOString()};
  const btn=e.target.querySelector("button[type=submit]");
  if(btn){btn.disabled=true;btn.textContent="Placing order...";}
  try{
    if(CLOUD_ENABLED){
-     const {error}=await sb.from("orders").insert({order_code:id,customer_name:name,phone,address,customer_note:note||null,payment_method:paymentMethod,items,total,status:"Pending"});
+     const {error}=await sb.from("orders").insert({order_code:id,customer_name:name,phone,address,items,total,status:"Pending",payment_method:paymentMethod,customer_note:customerNote||null});
      if(error) throw new Error(error.message);
    }
    const orders=JSON.parse(localStorage.getItem("sgg-orders")||"[]");
@@ -743,7 +407,7 @@ document.getElementById("orderForm").onsubmit=async e=>{
    console.error("Order save failed:",err);
    toast("Order could not be saved: "+(err?.message||String(err)));
  }finally{
-   if(btn){btn.disabled=false;btn.textContent="Place Order";}
+   if(btn){btn.disabled=false;btn.textContent="Confirm Order";}
  }
 };
 
@@ -753,8 +417,7 @@ let adminFilterState={q:"",status:"",date:""};
 function showOrderSuccess(order){
  lastPlacedOrder=order;
  document.getElementById("successOrderId").textContent=order.id;
- const payInfo=PAYMENT_DETAILS[order.paymentMethod]||"";
- document.getElementById("successOrderSummary").innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px"><div><b>Customer</b><br>${escHtml(order.name)}</div><div><b>Phone</b><br>${escHtml(order.phone)}</div><div style="grid-column:1/-1"><b>Delivery Address</b><br>${escHtml(order.address)}</div><div><b>Total</b><br><strong>${money(order.total)}</strong></div><div><b>Status</b><br><span style="color:#b77900;font-weight:800">${escHtml(order.status||"Pending")}</span></div><div style="grid-column:1/-1"><b>Payment Method</b><br>${escHtml(order.paymentMethod||"—")}</div>${payInfo?`<div style="grid-column:1/-1;margin-top:4px;padding:10px 12px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;color:#173b70">${payInfo}</div>`:""}</div>`;
+ document.getElementById("successOrderSummary").innerHTML=`<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:13px"><div><b>Customer</b><br>${escHtml(order.name)}</div><div><b>Phone</b><br>${escHtml(order.phone)}</div><div style="grid-column:1/-1"><b>Delivery Address</b><br>${escHtml(order.address)}</div><div><b>Total</b><br><strong>${money(order.total)}</strong></div><div><b>Status</b><br><span style="color:#b77900;font-weight:800">${escHtml(order.status||"Pending")}</span></div></div>`;
  document.getElementById("orderSuccessModal").classList.add("open");
 }
 function closeOrderSuccess(){document.getElementById("orderSuccessModal").classList.remove("open");}
@@ -765,188 +428,60 @@ async function copyText(text){
 async function downloadInvoice(order){
  if(!order)return;
  if(!window.jspdf?.jsPDF || !window.html2canvas){toast("Invoice tools are still loading. Please try again.");return;}
-
  const invoice=document.createElement("div");
- invoice.style.cssText="position:fixed;left:-10000px;top:0;width:794px;background:#fff;color:#0b2854;padding:0;font-family:Arial,Segoe UI,sans-serif;z-index:-1;overflow:hidden";
+ invoice.style.cssText="position:fixed;left:-10000px;top:0;width:794px;background:#fff;color:#111827;padding:38px;font-family:Arial,sans-serif;z-index:-1";
  const items=Array.isArray(order.items)?order.items:[];
- const qrSrc='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEICAIAAAAslP2oAAAE6ElEQVR4nO3dUWpkNxRAwThk/1uefAfOCwh0kYSrvj3tdtsHwbsj6efPnz9/Af/19+k3ADcSBgRhQBAGBGFAEAYEYUAQBgRhQBAGBGFAEAYEYUAQBgRhQPhn9R/8/PxMvI/tvvaZrL7/Xa+zy+r7Wd1vs/o6r/89fLFiQBAGBGFAEAYEYUAQBgRhQFieY3w5dT7V9Fxi13xg1fTP9fX1u36uV/4evlgxIAgDgjAgCAOCMCAIA4IwIGybY3zZ9Vx513Px6f0Gu+YPu/ZR7Pr66c9/1fScxIoBQRgQhAFBGBCEAUEYEIQBYXyOcZtd+xam5wCnnve/ck7UNCsGBGFAEAYEYUAQBgRhQBAGhF83x1h1at8CZ1kxIAgDgjAgCAOCMCAIA4IwIIzPMW57rv/KPofpc65O/V5u+3v4YsWAIAwIwoAgDAjCgCAMCMKAsG2O8fp5RKfmBtNzlVO/l9f/HqwYEIQBQRgQhAFBGBCEAUEYEH5e+f/x026bP0xzXtb/s2JAEAYEYUAQBgRhQBAGBGFAWN6Pset5/67n4qeex0/PN06dQzX9e9l1Htf035sVA4IwIAgDgjAgCAOCMCAIA8L4uVK3nac0/Vz8lTnJLtPv59TnYMWAIAwIwoAgDAjCgCAMCMKAsG2OMf38/sv0/GTXfGN6X8Su97NrP8Nt86tVVgwIwoAgDAjCgCAMCMKAIAwI2+7HODUf2OW277tq+vO8bb/NNCsGBGFAEAYEYUAQBgRhQBAGhPH9GK/sQzg1z/nyyr3at90X7n4MGCQMCMKAIAwIwoAgDAjCgDB+z/eu1zm1H+C2+yh22XXvx6nPx/0YcIAwIAgDgjAgCAOCMCAIA8Kxe753vc5t+wGm93Xctk/j1HzD/RhwgDAgCAOCMCAIA4IwIAgDwvL9GKf2Udz2/N75UXvd9jlYMSAIA4IwIAgDgjAgCAOCMCAs78f4bfdOTO8z2fX1r8yF3I8BDxMGBGFAEAYEYUAQBgRhQFjej7HtGx+ae9x2DtKqV85ruu3nNceADYQBQRgQhAFBGBCEAUEYELbd873q9XOoVt/Pbfd47DK9L2X69b9YMSAIA4IwIAgDgjAgCAOCMCBctx9j1alzilZN7wO5bc7zOisGBGFAEAYEYUAQBgRhQBAGhG33fK86db7TLqfmEl9e+dxWnZrPWDEgCAOCMCAIA4IwIAgDgjAgHNuPccqpc6tOnaf02+67cM83DBIGBGFAEAYEYUAQBgRhQDh2P8a0286bmp5LrL7+rvnGrrnBbfM0KwYEYUAQBgRhQBAGBGFAEAaE5TnGl1fu2Zi+X/zL9FzitvvOp03P06wYEIQBQRgQhAFBGBCEAUEYELbNMb68cp/3qun7Maaf0++aw+xy274OKwYEYUAQBgRhQBAGBGFAEAaE8TnGK27btzB9/8Mr+yhOnWNmxYAgDAjCgCAMCMKAIAwIwoDw6+YYp85f+nLqHvFVt815vn5e93zDIGFAEAYEYUAQBgRhQBAGhPE5xuvnQe16/9P3b0yfc/Vl+hytXfeHrLJiQBAGBGFAEAYEYUAQBgRhQPi57f/97zJ9n/dt93Df9nt5ZV70xYoBQRgQhAFBGBCEAUEYEIQBYXmOAb+BFQOCMCAIA4IwIAgDgjAgCAOCMCAIA4IwIAgDgjAgCAOCMCAIA8K/vDMhK5w2ujgAAAAASUVORK5CYII=';
-
- const rows=items.length?items.map((item,index)=>{
-   const qty=Math.max(1,Number(item.qty||item.quantity||1));
-   const price=Number(item.price)||0;
-   const amount=price*qty;
-   return `<tr>
-     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:center;color:#173b70">${index+1}</td>
-     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;font-weight:700;color:#12356a">${escHtml(item.name||("Product #"+item.id))}</td>
-     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:center">${qty}</td>
-     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:right">${money(price)}</td>
-     <td style="padding:15px 14px;border-bottom:1px solid #dbeafe;text-align:right;font-weight:700">${money(amount)}</td>
-   </tr>`;
- }).join(""):`<tr><td colspan="5" style="padding:25px;text-align:center;color:#64748b">No product details available.</td></tr>`;
-
- const subtotal=items.reduce((sum,item)=>{
-   const qty=Math.max(1,Number(item.qty||item.quantity||1));
-   return sum+(Number(item.price)||0)*qty;
- },0);
- const total=Number(order.total)||subtotal;
-
- invoice.innerHTML=`
- <div style="background:linear-gradient(135deg,#061d43 0%,#0b3f86 58%,#00aef0 100%);color:#fff;padding:34px 38px 28px;position:relative;overflow:hidden">
-   <div style="position:absolute;right:-85px;top:-110px;width:290px;height:290px;border:18px solid rgba(0,210,255,.28);border-radius:50%"></div>
-   <div style="position:absolute;right:35px;top:25px;width:180px;height:180px;border:2px solid rgba(255,255,255,.18);border-radius:50%"></div>
-   <div style="display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2">
-     <div style="display:flex;align-items:center;gap:16px">
-       <div style="width:78px;height:58px;border:3px solid #18c9ff;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:24px;font-weight:900;letter-spacing:-2px;background:rgba(255,255,255,.06)">SGG</div>
-       <div>
-         <div style="font-size:31px;line-height:1;font-weight:900;letter-spacing:-.5px">Smart Gadget <span style="color:#17c8ff">Gallery</span></div>
-         <div style="font-size:14px;margin-top:8px;color:#d9efff;letter-spacing:.5px">Premium Gadgets &amp; Accessories</div>
-       </div>
-     </div>
-     <div style="text-align:right;font-family:cursive;font-size:20px;line-height:1.05;transform:rotate(-4deg);color:#fff">Smart Choice<br><span style="font-size:22px">Better Life</span></div>
-   </div>
-   <div style="display:flex;gap:28px;margin-top:22px;font-size:11px;color:#e7f8ff">
-     <span>✓ 100% Original Products</span><span>✓ Fast &amp; Safe Delivery</span><span>✓ Dedicated Support</span>
-   </div>
- </div>
-
- <div style="padding:30px 38px 0">
-   <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:22px">
-     <div>
-       <div style="font-size:48px;font-weight:900;letter-spacing:1px;color:#0a2d63;line-height:1">INVOICE</div>
-       <div style="margin-top:9px;color:#4d6d99;font-size:14px">Thank you for choosing Smart Gadget Gallery!</div>
-       <div style="width:70px;height:4px;background:#13baf3;border-radius:5px;margin-top:13px"></div>
-     </div>
-     <div style="display:flex;gap:0;border:1px solid #cfe3fb;border-radius:15px;overflow:hidden;background:#f7fbff;min-width:350px">
-       <div style="padding:17px 22px;border-right:1px solid #cfe3fb">
-         <div style="font-size:12px;color:#5d789d">ORDER ID</div>
-         <div style="font-size:18px;font-weight:900;color:#0b356e;margin-top:5px">${escHtml(order.id||"—")}</div>
-       </div>
-       <div style="padding:17px 22px">
-         <div style="font-size:12px;color:#5d789d">DATE</div>
-         <div style="font-size:15px;font-weight:800;color:#0b356e;margin-top:5px">${new Date(order.createdAt||order.created_at||Date.now()).toLocaleString("en-BD")}</div>
-       </div>
-     </div>
-   </div>
-
-   <div style="display:grid;grid-template-columns:1.45fr .75fr;gap:18px;margin-top:25px">
-     <div style="border:1px solid #cfe3fb;border-radius:15px;padding:20px 22px;background:linear-gradient(135deg,#fbfdff,#f1f8ff)">
-       <div style="font-size:18px;font-weight:900;color:#0b356e;margin-bottom:14px">Customer Details</div>
-       <div style="font-size:14px;line-height:1.8;color:#243f67">
-         <div><b>Name</b> &nbsp;&nbsp; ${escHtml(order.name||order.customer_name||"—")}</div>
-         <div><b>Phone</b> &nbsp; ${escHtml(order.phone||"—")}</div>
-         <div><b>Address</b> ${escHtml(order.address||"—")}</div>
-         ${(order.note||order.customer_note)?`<div style="margin-top:8px"><b>Note</b> ${escHtml(order.note||order.customer_note)}</div>`:""}
-       </div>
-     </div>
-     <div style="border:1px solid #cfe3fb;border-radius:15px;padding:16px;background:#f1f8ff;display:flex;align-items:center;gap:13px">
-       ${qrSrc?`<img src="${qrSrc}" style="width:92px;height:92px;border-radius:8px;background:#fff;padding:5px">`:""}
-       <div><div style="font-family:cursive;font-size:24px;color:#0b3f86">Thank You!</div><div style="font-size:12px;color:#54749e;margin-top:5px">Scan for WhatsApp support</div><div style="font-size:11px;color:#54749e;margin-top:5px">01987046529</div></div>
-     </div>
-   </div>
-
-   <div style="margin-top:18px;border:1px solid #cfe3fb;border-radius:15px;padding:15px 18px;background:linear-gradient(135deg,#f7fbff,#eef7ff);display:flex;justify-content:space-between;align-items:center;gap:18px">
-     <div>
-       <div style="font-size:12px;color:#5d789d;font-weight:800;letter-spacing:.04em">PAYMENT METHOD</div>
-       <div style="font-size:18px;font-weight:900;color:#0b356e;margin-top:5px">${escHtml(order.paymentMethod||order.payment_method||"Not provided")}</div>
-     </div>
-     ${((order.paymentMethod||order.payment_method) && PAYMENT_DETAILS[order.paymentMethod||order.payment_method]) ? `<div style="font-size:13px;color:#36577f;text-align:right">${PAYMENT_DETAILS[order.paymentMethod||order.payment_method]}</div>` : `<div style="font-size:12px;color:#64748b;text-align:right">Customer selected this payment method at checkout.</div>`}
-   </div>
-
-   <div style="margin-top:24px;border:1px solid #c7def8;border-radius:15px;overflow:hidden">
-     <table style="width:100%;border-collapse:collapse;font-size:13px">
-       <thead><tr style="background:linear-gradient(90deg,#063e86,#0b68c7);color:#fff">
-         <th style="padding:14px;text-align:center;width:42px">#</th>
-         <th style="padding:14px;text-align:left">Product Name</th>
-         <th style="padding:14px;text-align:center;width:70px">Qty</th>
-         <th style="padding:14px;text-align:right;width:115px">Price</th>
-         <th style="padding:14px;text-align:right;width:125px">Amount</th>
-       </tr></thead>
-       <tbody>${rows}</tbody>
-     </table>
-   </div>
-
-   <div style="display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:23px;align-items:start">
-     <div style="border:1px solid #cfe3fb;border-radius:15px;padding:18px 20px;background:#f4f9ff">
-       <div style="font-weight:900;color:#0b356e;font-size:14px;margin-bottom:13px">Our Promise</div>
-       <div style="font-size:12px;color:#36577f;line-height:2">
-         <div>🛡️ <b>100% Genuine Products</b></div>
-         <div>🚚 <b>Fast &amp; Safe Delivery</b></div>
-         <div>🎧 <b>Dedicated Customer Support</b></div>
-       </div>
-     </div>
-     <div style="border:1px solid #cfe3fb;border-radius:15px;overflow:hidden">
-       <div style="padding:14px 18px;display:flex;justify-content:space-between;color:#183b68"><span>Subtotal</span><b>${money(subtotal)}</b></div>
-       <div style="padding:14px 18px;border-top:1px solid #dbeafe;display:flex;justify-content:space-between;color:#183b68"><span>Delivery Charge</span><b>${money(Math.max(0,total-subtotal))}</b></div>
-       <div style="padding:17px 18px;background:linear-gradient(90deg,#063b7d,#0b66c7);color:#fff;display:flex;justify-content:space-between;font-size:21px;font-weight:900"><span>Total</span><span>${money(total)}</span></div>
-     </div>
-   </div>
- </div>
-
- <div style="margin-top:27px;background:linear-gradient(135deg,#061d43,#0b3f86);color:#fff;padding:23px 38px;display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;gap:18px">
-   <div><div style="font-weight:900;font-size:16px">Smart Gadget Gallery</div><div style="font-size:11px;color:#cce9ff;margin-top:5px">Premium Gadgets &amp; Accessories</div></div>
-   <div style="font-size:12px;line-height:1.8"><div>☎ 01987046529</div><div>WhatsApp 01987046529</div><div>✉ mdmarufuli226@gmail.com</div></div>
-   <div style="text-align:right;font-family:cursive;font-size:25px">Thank You<br><span style="font-family:Arial;font-size:10px;letter-spacing:2px">FOR YOUR PURCHASE</span></div>
- </div>
- <div style="height:7px;background:linear-gradient(90deg,#063b7d,#00baf2,#063b7d)"></div>
- </div>`;
-
+ invoice.innerHTML=`<div style="border-bottom:3px solid #2563eb;padding-bottom:18px;display:flex;justify-content:space-between;gap:20px"><div><div style="font-size:28px;font-weight:900;color:#0f172a">Smart Gadget Gallery</div><div style="color:#64748b;margin-top:5px">Premium Gadgets & Accessories</div></div><div style="text-align:right"><div style="font-size:22px;font-weight:900">INVOICE</div><div style="margin-top:6px"><b>Order ID:</b> ${escHtml(order.id)}</div><div><b>Date:</b> ${new Date(order.createdAt||Date.now()).toLocaleString()}</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:22px 0"><div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px"><b>Customer</b><div style="margin-top:7px">${escHtml(order.name)}</div><div>${escHtml(order.phone)}</div><div>${escHtml(order.address)}</div></div><div style="border:1px solid #e2e8f0;border-radius:10px;padding:14px"><b>Order Status</b><div style="margin-top:7px;font-weight:800;color:#b45309">${escHtml(order.status||"Pending")}</div><div style="margin-top:8px"><b>Payment:</b> Cash on Delivery / Pending</div></div></div><table style="width:100%;border-collapse:collapse;font-size:13px"><thead><tr style="background:#eff6ff"><th style="padding:11px;text-align:left">Product</th><th style="padding:11px;text-align:center">Qty</th><th style="padding:11px;text-align:right">Price</th><th style="padding:11px;text-align:right">Amount</th></tr></thead><tbody>${items.map(item=>`<tr><td style="padding:11px;border-bottom:1px solid #e2e8f0">${escHtml(item.name||("Product #"+item.id))}</td><td style="padding:11px;text-align:center;border-bottom:1px solid #e2e8f0">1</td><td style="padding:11px;text-align:right;border-bottom:1px solid #e2e8f0">${money(Number(item.price)||0)}</td><td style="padding:11px;text-align:right;border-bottom:1px solid #e2e8f0">${money(Number(item.price)||0)}</td></tr>`).join("")}</tbody></table><div style="display:flex;justify-content:flex-end;margin-top:18px"><div style="width:270px"><div style="display:flex;justify-content:space-between;border-top:2px solid #111827;padding-top:10px;font-size:18px;font-weight:900"><span>Total</span><span>${money(order.total)}</span></div></div></div><div style="margin-top:42px;padding-top:15px;border-top:1px solid #e2e8f0;color:#64748b;font-size:12px">Smart Gadget Gallery · Phone: 01987046529 · WhatsApp: 01987046529 · Email: mdmarufuli226@gmail.com</div>`;
  document.body.appendChild(invoice);
  try{
-  const canvas=await html2canvas(invoice,{scale:3,backgroundColor:"#fff",useCORS:true,logging:false});
-  const {jsPDF}=window.jspdf;
-  const pdf=new jsPDF("p","mm","a4");
-  const margin=7,pageW=210,pageH=297;
-  const imgW=pageW-margin*2,imgH=canvas.height*imgW/canvas.width;
-  let left=imgH,pos=margin;
-  const img=canvas.toDataURL("image/png");
-  pdf.addImage(img,"PNG",margin,pos,imgW,imgH);
-  left-=pageH-margin*2;
-  while(left>0){
-    pos=margin-left;
-    pdf.addPage();
-    pdf.addImage(img,"PNG",margin,pos,imgW,imgH);
-    left-=pageH-margin*2;
-  }
-  pdf.save(`Smart-Gadget-Gallery-${String(order.id||"order").replace(/[^a-zA-Z0-9_-]/g,"-")}.pdf`);
- }catch(err){
-  console.error(err);
-  toast("Invoice PDF তৈরি করা যায়নি.");
- }finally{
-  invoice.remove();
- }
+  const canvas=await html2canvas(invoice,{scale:2,backgroundColor:"#fff",useCORS:true});
+  const {jsPDF}=window.jspdf;const pdf=new jsPDF("p","mm","a4");
+  const margin=10,pageW=210,pageH=297,imgW=pageW-margin*2,imgH=canvas.height*imgW/canvas.width;
+  let left=imgH,pos=margin;const img=canvas.toDataURL("image/jpeg",.95);
+  pdf.addImage(img,"JPEG",margin,pos,imgW,imgH);left-=pageH-margin*2;
+  while(left>0){pos=margin-left;pdf.addPage();pdf.addImage(img,"JPEG",margin,pos,imgW,imgH);left-=pageH-margin*2;}
+  pdf.save(`Smart-Gadget-Gallery-${String(order.id).replace(/[^a-zA-Z0-9_-]/g,"-")}.pdf`);
+ }catch(err){console.error(err);toast("Invoice PDF তৈরি করা যায়নি.");}
+ finally{invoice.remove();}
 }
 function openOrderDetails(id){
- const o=adminOrderCache.find(x=>String(x.id)===String(id));if(!o)return;
+ const o=adminOrderCache.find(x=>String(x.id)===String(id));
+ if(!o){toast("Order not found.");return;}
  const items=Array.isArray(o.items)?o.items:[];
- document.getElementById("orderDetailContent").innerHTML=`<div class="order-detail-grid"><div class="order-detail-card"><h4>ORDER ID</h4><b class="admin-id">${escHtml(o.id)}</b></div><div class="order-detail-card"><h4>STATUS</h4><select class="select" style="width:100%" onchange="updateOrderStatus('${escHtml(o.id)}',this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option ${o.status===st?"selected":""}>${st}</option>`).join("")}</select></div><div class="order-detail-card"><h4>CUSTOMER</h4>${escHtml(o.name)}<br>${escHtml(o.phone)}</div><div class="order-detail-card"><h4>DELIVERY ADDRESS</h4>${escHtml(o.address)}</div><div class="order-detail-card"><h4>💳 PAYMENT METHOD</h4>${o.paymentMethod?`<b>${escHtml(o.paymentMethod)}</b>`:`<span class="muted">Not provided.</span>`}</div><div class="order-detail-card" style="grid-column:1/-1"><h4>📝 CUSTOMER NOTE</h4>${o.note?`<div style="padding:10px 12px;border-radius:10px;background:var(--card);border:1px solid var(--border);line-height:1.6">${escHtml(o.note)}</div>`:`<span class="muted">No customer note.</span>`}</div><div class="order-detail-card" style="grid-column:1/-1;border:1px solid #93c5fd;background:#eff6ff"><h4>🔒 ADMIN PRIVATE NOTE</h4>${o.adminNote?`<div style="padding:10px 12px;border-radius:10px;background:#fff;border:1px solid #bfdbfe;line-height:1.6">${escHtml(o.adminNote)}</div>`:`<span class="muted">No admin note yet.</span>`}</div></div><div class="order-detail-items">${items.length?items.map(i=>`<div class="order-detail-item"><span>${escHtml(i.name||("Product #"+i.id))}</span><b>${money(Number(i.price)||0)}</b></div>`).join(""):"<div class='order-detail-item'>No item details.</div>"}</div><div class="order-detail-total"><span>Total</span><span>${money(o.total)}</span></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px;flex-wrap:wrap"><button class="btn btn-blue" data-order-action="edit" data-order-id="${escHtml(o.id)}">✏️ Edit Order</button><button class="btn btn-soft" onclick="downloadInvoice(adminOrderCache.find(x=>x.id==='${escHtml(o.id)}'))">📄 Invoice PDF</button><button class="btn btn-soft" onclick="copyText('${escHtml(o.id)}')">📋 Copy ID</button></div>`;
+ document.getElementById("orderDetailContent").innerHTML=`<div class="order-detail-grid"><div class="order-detail-card"><h4>ORDER ID</h4><b class="admin-id">${escHtml(o.id)}</b></div><div class="order-detail-card"><h4>STATUS</h4><select class="select" style="width:100%" id="detailStatusSelect">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option ${o.status===st?"selected":""}>${st}</option>`).join("")}</select></div><div class="order-detail-card"><h4>CUSTOMER</h4>${escHtml(o.name)}<br>${escHtml(o.phone)}</div><div class="order-detail-card"><h4>DELIVERY ADDRESS</h4>${escHtml(o.address)}</div><div class="order-detail-card"><h4>PAYMENT METHOD</h4>${escHtml(o.paymentMethod)}</div><div class="order-detail-card"><h4>CUSTOMER NOTE</h4>${escHtml(o.customerNote||"No note")}</div><div class="order-detail-card" style="grid-column:1/-1"><h4>🔒 ADMIN PRIVATE NOTE</h4>${escHtml(o.adminNote||"No private note")}</div></div><div class="order-detail-items">${items.length?items.map(i=>`<div class="order-detail-item"><span>${escHtml(i.name||("Product #"+i.id))}</span><b>${money(Number(i.price)||0)}</b></div>`).join(""):"<div class='order-detail-item'>No item details.</div>"}</div><div class="order-detail-total"><span>Total</span><span>${money(o.total)}</span></div><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button class="btn btn-blue" id="detailEditBtn">✏️ Edit Order</button><button class="btn btn-soft" id="detailInvoiceBtn">📄 Invoice PDF</button><button class="btn btn-soft" id="detailCopyBtn">📋 Copy ID</button></div>`;
  document.getElementById("orderDetailModal").classList.add("open");
+ document.getElementById("detailStatusSelect").onchange=e=>updateOrderStatus(o.id,e.target.value);
+ document.getElementById("detailEditBtn").onclick=()=>{document.getElementById("orderDetailModal").classList.remove("open");openEditOrder(o.id);};
+ document.getElementById("detailInvoiceBtn").onclick=()=>downloadInvoice(o);
+ document.getElementById("detailCopyBtn").onclick=()=>copyText(o.id);
 }
-
 function openEditOrder(id){
- const o=adminOrderCache.find(x=>String(x.id)===String(id)); if(!o)return;
+ const o=adminOrderCache.find(x=>String(x.id)===String(id));
+ if(!o){toast("Order not found.");return;}
  document.getElementById("editOrderId").value=o.id;
  document.getElementById("editCustomerName").value=o.name||"";
- document.getElementById("editCustomerPhone").value=o.phone||"";
- document.getElementById("editCustomerAddress").value=o.address||"";
+ document.getElementById("editPhone").value=o.phone||"";
+ document.getElementById("editAddress").value=o.address||"";
  document.getElementById("editPaymentMethod").value=o.paymentMethod||"Cash on Delivery";
- document.getElementById("editCustomerNote").value=o.note||"";
+ document.getElementById("editCustomerNote").value=o.customerNote||"";
  document.getElementById("editAdminNote").value=o.adminNote||"";
  document.getElementById("editOrderModal").classList.add("open");
 }
-function closeEditOrder(){document.getElementById("editOrderModal").classList.remove("open");}
 async function saveOrderEdits(e){
  e.preventDefault();
  const id=document.getElementById("editOrderId").value;
- const payload={customer_name:document.getElementById("editCustomerName").value.trim(),phone:document.getElementById("editCustomerPhone").value.trim(),address:document.getElementById("editCustomerAddress").value.trim(),payment_method:document.getElementById("editPaymentMethod").value,customer_note:document.getElementById("editCustomerNote").value.trim()||null,admin_note:document.getElementById("editAdminNote").value.trim()||null};
- if(!payload.customer_name||!payload.phone||!payload.address){toast("Customer name, phone and address are required.");return;}
- if(CLOUD_ENABLED){const {error}=await sb.from("orders").update(payload).eq("order_code",id);if(error){toast("Save failed: "+error.message);return;}}
- else{const orders=JSON.parse(localStorage.getItem("sgg-orders")||"[]");const o=orders.find(x=>String(x.id)===String(id));if(o){Object.assign(o,payload,{name:payload.customer_name,paymentMethod:payload.payment_method,note:payload.customer_note,adminNote:payload.admin_note});localStorage.setItem("sgg-orders",JSON.stringify(orders));}}
- const cached=adminOrderCache.find(x=>String(x.id)===String(id));
- if(cached){cached.name=payload.customer_name;cached.phone=payload.phone;cached.address=payload.address;cached.paymentMethod=payload.payment_method;cached.note=payload.customer_note||"";cached.adminNote=payload.admin_note||"";}
- closeEditOrder(); toast("Order " + id + " updated successfully."); renderAdmin(); setTimeout(()=>openOrderDetails(id),120);
+ const payload={customer_name:document.getElementById("editCustomerName").value.trim(),phone:document.getElementById("editPhone").value.trim(),address:document.getElementById("editAddress").value.trim(),payment_method:document.getElementById("editPaymentMethod").value,customer_note:document.getElementById("editCustomerNote").value.trim()||null,admin_note:document.getElementById("editAdminNote").value.trim()||null};
+ if(!payload.customer_name||!payload.phone||!payload.address){toast("Please fill name, phone and address.");return;}
+ try{
+   if(CLOUD_ENABLED){const {error}=await sb.from("orders").update(payload).eq("order_code",id);if(error)throw new Error(error.message);}
+   const cached=adminOrderCache.find(x=>String(x.id)===String(id));
+   if(cached){cached.name=payload.customer_name;cached.phone=payload.phone;cached.address=payload.address;cached.paymentMethod=payload.payment_method;cached.customerNote=payload.customer_note||"";cached.adminNote=payload.admin_note||"";}
+   const local=JSON.parse(localStorage.getItem("sgg-orders")||"[]");const lo=local.find(x=>String(x.id)===String(id));if(lo){Object.assign(lo,{name:payload.customer_name,phone:payload.phone,address:payload.address,paymentMethod:payload.payment_method,customerNote:payload.customer_note||"",adminNote:payload.admin_note||""});localStorage.setItem("sgg-orders",JSON.stringify(local));}
+   document.getElementById("editOrderModal").classList.remove("open");
+   toast("Order updated successfully.");
+   await renderAdmin();
+ }catch(err){toast("Update failed: "+(err?.message||String(err)));}
 }
-
-
 async function openAdminLogin(){
  if(!CLOUD_ENABLED){toast("Supabase configuration is missing.");return;}
  try{
@@ -1038,7 +573,7 @@ async function getCloudOrders(){
 }
 async function renderAdmin(){
  adminOrderCache=CLOUD_ENABLED?await getCloudOrders():JSON.parse(localStorage.getItem("sgg-orders")||"[]");
- adminOrderCache=adminOrderCache.map(o=>({id:o.order_code||o.id,name:o.customer_name||o.name||"",phone:o.phone||"",address:o.address||"",paymentMethod:o.payment_method||o.paymentMethod||"",note:o.customer_note||o.note||"",adminNote:o.admin_note||o.adminNote||"",items:o.items||[],total:Number(o.total)||0,status:o.status||"Pending",createdAt:o.created_at||o.createdAt}));
+ adminOrderCache=adminOrderCache.map(o=>({id:o.order_code||o.id,name:o.customer_name||o.name||"",phone:o.phone||"",address:o.address||"",paymentMethod:o.payment_method||o.paymentMethod||"Cash on Delivery",customerNote:o.customer_note||o.customerNote||"",adminNote:o.admin_note||o.adminNote||"",items:o.items||[],total:Number(o.total)||0,status:o.status||"Pending",createdAt:o.created_at||o.createdAt}));
  const orders=adminOrderCache;
  const sales=orders.filter(o=>o.status!=="Cancelled").reduce((sum,o)=>sum+o.total,0);
  const pending=orders.filter(o=>o.status==="Pending").length;
@@ -1053,15 +588,10 @@ async function renderAdmin(){
  const productThumb=(item)=>{const p=products.find(x=>String(x.id)===String(item.id));return p?.image?`<img src="${escHtml(p.image)}" alt="">`:(p?.icon||"📦")};
  const statusClass=s=>String(s||"").toLowerCase();
  const box=document.getElementById("adminContent");
- const statuses=["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"];
- const statusCounts=Object.fromEntries(statuses.map(st=>[st,orders.filter(o=>o.status===st).length]));
- const statusTabs=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 16px;padding:10px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;overflow:auto"><button type="button" onclick="setAdminStatusFilter("")" style="border:1px solid ${!adminFilterState.status?"#2563eb":"#cbd5e1"};background:${!adminFilterState.status?"#2563eb":"#fff"};color:${!adminFilterState.status?"#fff":"#334155"};padding:8px 12px;border-radius:999px;font-weight:800;cursor:pointer">All (${orders.length})</button>${statuses.map(st=>`<button type="button" onclick="setAdminStatusFilter("${st}")" style="border:1px solid ${adminFilterState.status===st?"#2563eb":"#cbd5e1"};background:${adminFilterState.status===st?"#2563eb":"#fff"};color:${adminFilterState.status===st?"#fff":"#334155"};padding:8px 12px;border-radius:999px;font-weight:800;cursor:pointer">${st} (${statusCounts[st]})</button>`).join("")}</div>`;
- box.innerHTML=`<div class="admin-dashboard"><div class="admin-hero"><div><h2>🛒 Orders Management</h2><p>Manage customer orders, update delivery status and download invoices.</p></div><button class="btn btn-soft" onclick="exportOrders()">⬇ Export CSV</button></div><div class="admin-kpis"><div class="admin-kpi"><div class="kpi-icon" style="background:#dbeafe;color:#2563eb">🛒</div><div class="kpi-value">${orders.length}</div><div class="kpi-label">Total Orders</div><div class="kpi-note">All customer orders</div></div><div class="admin-kpi"><div class="kpi-icon" style="background:#dcfce7;color:#16a34a">৳</div><div class="kpi-value">${money(sales)}</div><div class="kpi-label">Total Sales</div><div class="kpi-note">Cancelled excluded</div></div><div class="admin-kpi"><div class="kpi-icon" style="background:#fef3c7;color:#b45309">⏳</div><div class="kpi-value">${pending}</div><div class="kpi-label">Pending</div><div class="kpi-note">Needs attention</div></div><div class="admin-kpi"><div class="kpi-icon" style="background:#ede9fe;color:#7c3aed">🚚</div><div class="kpi-value">${delivered}</div><div class="kpi-label">Delivered</div><div class="kpi-note">Completed orders</div></div></div>${statusTabs}<div class="admin-tools"><input class="wide" id="adminSearch" placeholder="🔎 Search Order ID, customer or phone..." value="${escHtml(adminFilterState.q)}"><select id="adminStatusFilter"><option value="">All Status</option>${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option value="${st}" ${adminFilterState.status===st?"selected":""}>${st}</option>`).join("")}</select><input id="adminDateFilter" type="date" value="${escHtml(adminFilterState.date)}"><button class="btn btn-blue" id="adminRefreshBtn">↻ Refresh</button></div><div class="admin-table-wrap"><table class="admin-orders-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Payment Method</th><th>Customer Note</th><th>Admin Note</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Action</th></tr></thead><tbody>${filtered.length?filtered.map(o=>`<tr><td><span class="admin-id">${escHtml(o.id)}</span></td><td class="admin-customer"><b>${escHtml(o.name)}</b><small>${escHtml(o.address)}</small></td><td>${escHtml(o.phone)}</td><td><b style="display:inline-flex;padding:6px 9px;border-radius:999px;background:#eff6ff;color:#1d4ed8;font-size:11px">💳 ${escHtml(o.paymentMethod||"Not provided")}</b></td><td>${o.note?`<div style="max-width:220px;padding:8px 10px;border-radius:10px;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;font-size:11px;line-height:1.45"><b>📝 Note</b><br>${escHtml(o.note)}</div>`:`<span class="muted">No note</span>`}</td><td>${o.adminNote?`<div style="max-width:220px;padding:8px 10px;border-radius:10px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e40af;font-size:11px;line-height:1.45"><b>🔒 Admin</b><br>${escHtml(o.adminNote)}</div>`:`<span class="muted">No admin note</span>`}</td><td><div class="admin-items">${(Array.isArray(o.items)?o.items:[]).slice(0,2).map(i=>`<span class="admin-item-thumb">${productThumb(i)}</span>`).join("")} ${(o.items||[]).length>2?`<span class="admin-more">+${o.items.length-2} more</span>`:""}</div></td><td class="admin-total">${money(o.total)}</td><td><select class="admin-status ${statusClass(o.status)}" onchange="updateOrderStatus('${escHtml(o.id)}',this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option ${o.status===st?"selected":""}>${st}</option>`).join("")}</select></td><td>${new Date(o.createdAt).toLocaleDateString()}<br><small class="muted">${new Date(o.createdAt).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</small></td><td><div class="admin-actions"><button type="button" class="admin-action view" data-order-action="view" data-order-id="${escHtml(o.id)}">👁 View</button><button type="button" class="admin-action edit" style="background:#0f766e;color:#fff" data-order-action="edit" data-order-id="${escHtml(o.id)}">✏️ Edit</button><button class="admin-action more" onclick="copyText('${escHtml(o.id)}')">⋮</button></div></td></tr>`).join(""):`<tr><td colspan="11"><div class="admin-empty">No orders found.</div></td></tr>`}</tbody></table></div><div class="admin-footer"><span>Showing ${filtered.length} of ${orders.length} orders</span><span>Order IDs are now short and easy to share.</span></div></div>`;
+ box.innerHTML=`<div class="admin-dashboard"><div class="admin-hero"><div><h2>🛒 Orders Management</h2><p>Manage customer orders, update delivery status and download invoices.</p></div><button class="btn btn-soft" onclick="exportOrders()">⬇ Export CSV</button></div><div class="admin-kpis"><div class="admin-kpi"><div class="kpi-icon" style="background:#dbeafe;color:#2563eb">🛒</div><div class="kpi-value">${orders.length}</div><div class="kpi-label">Total Orders</div><div class="kpi-note">All customer orders</div></div><div class="admin-kpi"><div class="kpi-icon" style="background:#dcfce7;color:#16a34a">৳</div><div class="kpi-value">${money(sales)}</div><div class="kpi-label">Total Sales</div><div class="kpi-note">Cancelled excluded</div></div><div class="admin-kpi"><div class="kpi-icon" style="background:#fef3c7;color:#b45309">⏳</div><div class="kpi-value">${pending}</div><div class="kpi-label">Pending</div><div class="kpi-note">Needs attention</div></div><div class="admin-kpi"><div class="kpi-icon" style="background:#ede9fe;color:#7c3aed">🚚</div><div class="kpi-value">${delivered}</div><div class="kpi-label">Delivered</div><div class="kpi-note">Completed orders</div></div></div><div class="admin-tools"><input class="wide" id="adminSearch" placeholder="🔎 Search Order ID, customer or phone..." value="${escHtml(adminFilterState.q)}"><select id="adminStatusFilter"><option value="">All Status</option>${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option value="${st}" ${adminFilterState.status===st?"selected":""}>${st}</option>`).join("")}</select><input id="adminDateFilter" type="date" value="${escHtml(adminFilterState.date)}"><button class="btn btn-blue" id="adminRefreshBtn">↻ Refresh</button></div><div class="admin-table-wrap"><table class="admin-orders-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Items</th><th>Total</th><th>Status</th><th>Date</th><th>Action</th></tr></thead><tbody>${filtered.length?filtered.map(o=>`<tr><td><span class="admin-id">${escHtml(o.id)}</span></td><td class="admin-customer"><b>${escHtml(o.name)}</b><small>${escHtml(o.address)}</small></td><td>${escHtml(o.phone)}</td><td><div class="admin-items">${(Array.isArray(o.items)?o.items:[]).slice(0,2).map(i=>`<span class="admin-item-thumb">${productThumb(i)}</span>`).join("")} ${(o.items||[]).length>2?`<span class="admin-more">+${o.items.length-2} more</span>`:""}</div></td><td class="admin-total">${money(o.total)}</td><td><select class="admin-status ${statusClass(o.status)}" onchange="updateOrderStatus('${escHtml(o.id)}',this.value)">${["Pending","Confirmed","Processing","Shipped","Delivered","Cancelled"].map(st=>`<option ${o.status===st?"selected":""}>${st}</option>`).join("")}</select></td><td>${new Date(o.createdAt).toLocaleDateString()}<br><small class="muted">${new Date(o.createdAt).toLocaleTimeString([], {hour:"2-digit",minute:"2-digit"})}</small></td><td><div class="admin-actions"><button class="admin-action view" data-action="view" data-order-id="${escHtml(o.id)}">👁 View</button><button class="admin-action" style="background:#e0f2fe;color:#0369a1" data-action="edit" data-order-id="${escHtml(o.id)}">✏️ Edit</button><button class="admin-action more" data-action="copy" data-order-id="${escHtml(o.id)}">⋮</button></div></td></tr>`).join(""):`<tr><td colspan="8"><div class="admin-empty">No orders found.</div></td></tr>`}</tbody></table></div><div class="admin-footer"><span>Showing ${filtered.length} of ${orders.length} orders</span><span>Order IDs are now short and easy to share.</span></div></div>`;
  const searchEl=document.getElementById("adminSearch");const statusEl=document.getElementById("adminStatusFilter");const dateEl=document.getElementById("adminDateFilter");
  searchEl.oninput=()=>{adminFilterState.q=searchEl.value;renderAdmin()};statusEl.onchange=()=>{adminFilterState.status=statusEl.value;renderAdmin()};dateEl.onchange=()=>{adminFilterState.date=dateEl.value;renderAdmin()};document.getElementById("adminRefreshBtn").onclick=()=>renderAdmin();
 }
-function setAdminStatusFilter(status){ adminFilterState.status=status||""; renderAdmin(); }
-
 async function updateOrderStatus(id,status){
  if(CLOUD_ENABLED){const {error}=await sb.from("orders").update({status}).eq("order_code",id);if(error){toast("Status update failed: "+error.message);return;}}
  else{const orders=JSON.parse(localStorage.getItem("sgg-orders")||"[]");const o=orders.find(x=>x.id===id);if(o){o.status=status;localStorage.setItem("sgg-orders",JSON.stringify(orders));}}
@@ -1072,15 +602,14 @@ async function updateOrderStatus(id,status){
 async function exportOrders(){
  const orders=CLOUD_ENABLED?await getCloudOrders():JSON.parse(localStorage.getItem("sgg-orders")||"[]");
  if(!orders.length){toast("No orders to export.");return;}
- const rows=[["Order ID","Customer","Phone","Address","Payment Method","Customer Note","Admin Note","Items","Total","Status","Date"],...orders.map(o=>[o.order_code||o.id,o.customer_name||o.name,o.phone,o.address,o.payment_method||o.paymentMethod||"",o.customer_note||o.note||"",o.admin_note||o.adminNote||"",JSON.stringify(o.items),o.total,o.status,o.created_at||o.createdAt])];
+ const rows=[["Order ID","Customer","Phone","Address","Items","Total","Status","Date"],...orders.map(o=>[o.order_code||o.id,o.customer_name||o.name,o.phone,o.address,JSON.stringify(o.items),o.total,o.status,o.created_at||o.createdAt])];
  const csv=rows.map(r=>r.map(v=>'"'+String(v).replaceAll('"','""')+'"').join(",")).join("\n");
  const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([csv],{type:"text/csv"}));a.download="smart-gadget-orders.csv";a.click();URL.revokeObjectURL(a.href);
 }
 
-document.getElementById("adminContent").addEventListener("click",e=>{const btn=e.target.closest("[data-order-action]");if(!btn)return;const id=btn.getAttribute("data-order-id");const action=btn.getAttribute("data-order-action");if(action==="view")openOrderDetails(id);if(action==="edit")openEditOrder(id);});
-document.getElementById("orderDetailContent").addEventListener("click",e=>{const btn=e.target.closest("[data-order-action]");if(!btn)return;const id=btn.getAttribute("data-order-id");if(btn.getAttribute("data-order-action")==="edit")openEditOrder(id);});
-document.getElementById("closeEditOrder").onclick=closeEditOrder;
-document.getElementById("cancelEditOrder").onclick=closeEditOrder;
+document.getElementById("adminContent").addEventListener("click",e=>{const b=e.target.closest("[data-action]");if(!b)return;const id=b.getAttribute("data-order-id"),a=b.getAttribute("data-action");if(a==="view")openOrderDetails(id);else if(a==="edit")openEditOrder(id);else if(a==="copy")copyText(id);});
+document.getElementById("closeEditOrder").onclick=()=>document.getElementById("editOrderModal").classList.remove("open");
+document.getElementById("cancelEditOrder").onclick=()=>document.getElementById("editOrderModal").classList.remove("open");
 document.getElementById("editOrderForm").onsubmit=saveOrderEdits;
 
 document.getElementById("trackBtn").onclick=async()=>{
