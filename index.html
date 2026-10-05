@@ -120,6 +120,25 @@ footer{background:linear-gradient(180deg,var(--card),rgba(7,20,38,.98));}
 @media(max-width:850px){.admin-kpis{grid-template-columns:repeat(2,1fr)}.admin-tools{grid-template-columns:1fr 1fr}.admin-tools .wide{grid-column:1/-1}}
 @media(max-width:600px){.admin-kpis{grid-template-columns:1fr 1fr}.admin-hero{flex-direction:column}.admin-dashboard .admin-hero h2{font-size:23px}.admin-tools{grid-template-columns:1fr}.admin-tools .wide{grid-column:auto}.order-detail-grid{grid-template-columns:1fr}.order-success-actions{grid-template-columns:1fr}}
 
+
+/* ===== Ultra Premium Checkout ===== */
+#orderModal{background:rgba(2,8,23,.82);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:12px}
+#orderModal .checkout-premium-modal{width:min(1180px,98vw);max-width:1180px;max-height:95vh;overflow:auto;padding:0;border:1px solid rgba(51,176,255,.28);border-radius:28px;background:#f4f8ff;box-shadow:0 35px 110px rgba(0,0,0,.48);overflow-x:hidden}
+.cp-hero{position:relative;padding:25px 30px;color:#fff;background:radial-gradient(circle at 82% 15%,rgba(0,190,255,.42),transparent 24%),linear-gradient(115deg,#020b1f 0%,#062b61 52%,#173bcb 100%);display:flex;align-items:center;justify-content:space-between;gap:20px;overflow:hidden}
+.cp-hero:after{content:"";position:absolute;right:-80px;bottom:-150px;width:380px;height:280px;border-radius:50%;background:rgba(117,79,255,.35);filter:blur(8px)}
+.cp-brand{display:flex;align-items:center;gap:15px;position:relative;z-index:1}.cp-brand-icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:29px;background:linear-gradient(145deg,#12b9ff,#5b4dff);box-shadow:0 10px 30px rgba(15,157,255,.35);border:1px solid rgba(255,255,255,.3)}
+.cp-title{font-size:clamp(25px,3vw,38px);font-weight:950;line-height:1.05;letter-spacing:-.03em}.cp-subtitle{margin-top:6px;color:#bfe8ff;font-size:13px;font-weight:650;letter-spacing:.03em}.cp-close{position:relative;z-index:2;width:44px;height:44px;border:1px solid rgba(255,255,255,.25);border-radius:14px;background:rgba(255,255,255,.10);color:#fff;font-size:27px;cursor:pointer;transition:.2s}.cp-close:hover{background:rgba(255,255,255,.2);transform:rotate(4deg)}
+.cp-body{padding:22px;display:grid;grid-template-columns:minmax(0,1.55fr) minmax(330px,.82fr);gap:18px;background:linear-gradient(135deg,#f6faff,#edf5ff)}.cp-main{display:flex;flex-direction:column;gap:15px}.cp-card{background:rgba(255,255,255,.96);border:1px solid #d7e7fb;border-radius:21px;padding:21px;box-shadow:0 12px 32px rgba(19,63,112,.08)}
+.cp-section-head{display:flex;align-items:center;gap:12px;margin-bottom:17px}.cp-section-icon{width:45px;height:45px;border-radius:14px;display:grid;place-items:center;font-size:21px;color:#fff;background:linear-gradient(135deg,#0573dc,#5b4df6);box-shadow:0 8px 18px rgba(23,103,222,.2)}.cp-section-head h3{margin:0;color:#102e59;font-size:19px;letter-spacing:-.02em}.cp-section-head h3 span{font-size:12px;font-weight:700;color:#7c8da3}.cp-section-head p{margin:3px 0 0;color:#71839a;font-size:12px}
+.cp-progress{display:flex;align-items:center;gap:8px;color:#8090a5;font-size:11px;font-weight:750;margin:-2px 0 18px}.cp-step{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid #c9d9ec;background:#f2f6fb}.cp-step.active{background:#118cf0;color:#fff;border-color:#118cf0;box-shadow:0 0 0 5px #118cf01a}.cp-line{height:1px;background:#cbd9ea;flex:0 1 100px}
+.cp-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cp-field{display:flex;flex-direction:column;gap:6px}.cp-field.full{grid-column:1/-1}.cp-field label{font-size:12px;font-weight:850;color:#183d6a}.cp-field label b{color:#ef4444}.cp-input,.cp-textarea{width:100%;box-sizing:border-box;border:1px solid #cbdcf0;border-radius:13px;background:#f9fcff;color:#132f50;padding:13px 14px;outline:none;font:inherit;transition:.2s}.cp-input:focus,.cp-textarea:focus{border-color:#168ff0;box-shadow:0 0 0 4px rgba(22,143,240,.1);background:#fff}.cp-textarea{min-height:92px;resize:vertical}.cp-note{min-height:100px}.cp-note-count{text-align:right;margin-top:6px;color:#8392a4;font-size:11px}.cp-hidden-select{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.cp-payments{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.cp-pay{position:relative;text-align:center;border:1px solid #cbdcf0;background:#f9fcff;color:#17395f;border-radius:15px;padding:13px 8px;cursor:pointer;transition:.2s;min-height:118px}.cp-pay:hover{transform:translateY(-2px);border-color:#1699f5;box-shadow:0 8px 20px rgba(16,126,218,.1)}.cp-pay.active{border:2px solid #0d94f5;background:linear-gradient(145deg,#edf9ff,#f3f0ff);box-shadow:0 8px 24px rgba(13,148,245,.14)}.cp-pay i{display:none;position:absolute;right:-1px;top:-1px;width:24px;height:24px;border-radius:0 14px 0 12px;background:#0d94f5;color:#fff;font-style:normal;font-size:13px}.cp-pay.active i{display:grid;place-items:center}.cp-pay-icon{display:block;font-size:25px;height:31px}.cp-pay strong{display:block;font-size:12px;margin-top:5px}.cp-pay small{display:block;color:#7a8ca1;font-size:10px;margin-top:3px}
+.cp-confirm{width:100%;border:0;border-radius:16px;padding:16px 20px;color:#fff;font-size:16px;font-weight:950;cursor:pointer;background:linear-gradient(100deg,#078df2 0%,#334cf4 55%,#8a54f7 100%);box-shadow:0 13px 28px rgba(34,91,235,.28);transition:.2s}.cp-confirm:hover{transform:translateY(-2px);box-shadow:0 17px 34px rgba(34,91,235,.34)}.cp-confirm span{font-size:22px}.cp-secure{text-align:center;color:#72859b;font-size:11px;margin-top:-7px}
+.cp-summary{height:max-content;position:sticky;top:0;overflow:hidden;padding:0}.cp-summary-head{padding:18px 19px;background:linear-gradient(135deg,#061f48,#0b64c5);color:#fff;display:flex;justify-content:space-between;align-items:center}.cp-summary-head h3{margin:0;font-size:18px}.cp-summary-head span{font-size:10px;font-weight:850;background:rgba(255,255,255,.15);padding:6px 9px;border-radius:99px}.cp-items{padding:6px 18px}.cp-item{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #e4edf7}.cp-thumb{width:48px;height:48px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#eaf6ff,#eef0ff);font-size:24px;border:1px solid #d8e8f8;overflow:hidden}.cp-thumb img{width:100%;height:100%;object-fit:cover}.cp-item-name{font-size:12px;font-weight:850;color:#17395f}.cp-item-meta{font-size:10px;color:#7c8da1;margin-top:2px}.cp-item-price{font-size:12px;font-weight:900;color:#17395f}.cp-totals{padding:12px 18px;border-top:1px solid #dfe9f4}.cp-totals>div{display:flex;justify-content:space-between;padding:5px 0;color:#6d8198;font-size:12px}.cp-totals b{color:#17395f}.cp-totals em{font-style:normal;font-size:9px;background:#d9fbe7;color:#11934c;border-radius:99px;padding:3px 6px;margin-left:4px}.cp-total{margin:5px 18px 15px;padding:15px;border-radius:15px;color:#fff;background:linear-gradient(100deg,#062e6b,#0a8ce5);display:flex;justify-content:space-between;align-items:center;font-weight:900}.cp-total strong{font-size:20px;color:#72e5ff}.cp-benefits{margin:0 18px 18px;padding:14px;border-radius:15px;background:linear-gradient(145deg,#f0f8ff,#f5f2ff);border:1px solid #dceafb}.cp-benefits div{display:flex;gap:10px;align-items:center;padding:7px 0;color:#0e6fca;font-size:17px}.cp-benefits span{display:flex;flex-direction:column}.cp-benefits b{font-size:11px;color:#17395f}.cp-benefits small{font-size:9px;color:#7b8ca1;margin-top:1px}
+.cp-footer{display:flex;align-items:center;justify-content:space-around;gap:10px;padding:15px 22px;background:#04162f;color:#b7d5f5;font-size:11px}.cp-footer b{color:#7ee7ff;font-size:12px}
+@media(max-width:850px){.cp-body{grid-template-columns:1fr}.cp-summary{position:static}.cp-payments{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){#orderModal{padding:6px}.cp-hero{padding:18px 16px}.cp-title{font-size:23px}.cp-subtitle{font-size:10px}.cp-brand-icon{width:46px;height:46px;font-size:22px}.cp-body{padding:10px}.cp-card{padding:16px;border-radius:17px}.cp-grid{grid-template-columns:1fr}.cp-field.full{grid-column:auto}.cp-payments{grid-template-columns:1fr 1fr}.cp-pay{min-height:108px}.cp-footer{display:grid;grid-template-columns:1fr 1fr;text-align:center}.cp-footer b{grid-column:1/-1}}
+
 </style>
 </head>
 <body>
@@ -202,7 +221,52 @@ footer{background:linear-gradient(180deg,var(--card),rgba(7,20,38,.98));}
 
 <div class="modal" id="cartModal"><div class="modal-box"><div class="modal-head"><h2>Your Cart</h2><button class="close" id="closeCart">×</button></div><div id="cartItems" class="muted">Your cart is empty.</div><div style="margin-top:20px;display:flex;justify-content:space-between;align-items:center"><b>Total: <span id="cartTotal">৳0</span></b><button class="btn btn-blue" id="checkoutBtn">Place Order</button></div></div></div>
 
-<div class="modal" id="orderModal"><div class="modal-box"><div class="modal-head"><h2>Customer Order</h2><button class="close" id="closeOrder">×</button></div><p class="muted">Enter your name, phone number and delivery address. Your order will be saved securely online.</p><form id="orderForm"><input class="field" id="custName" placeholder="Customer name" required style="margin-top:10px"><input class="field" id="custPhone" placeholder="Phone number" required style="margin-top:10px"><textarea class="field" id="custAddress" placeholder="Delivery address" required style="margin-top:10px;min-height:90px"></textarea><select class="field" id="custPaymentMethod" required style="margin-top:10px"><option value="">Select Payment Method</option><option>Cash on Delivery</option><option>bKash</option><option>Nagad</option><option>Rocket</option></select><textarea class="field" id="custNote" placeholder="Customer Note (optional)" style="margin-top:10px;min-height:70px"></textarea><button class="btn btn-blue" style="width:100%;margin-top:12px">Confirm Order</button></form></div></div>
+<div class="modal" id="orderModal">
+<div class="modal-box checkout-premium-modal">
+  <div class="cp-hero">
+    <div class="cp-brand"><div class="cp-brand-icon">🛍️</div><div><div class="cp-title">Place Your Order</div><div class="cp-subtitle">Fast • Secure • Trusted — Smart Gadget Gallery</div></div></div>
+    <button class="cp-close" id="closeOrder" aria-label="Close">×</button>
+  </div>
+  <div class="cp-body">
+    <form id="orderForm" class="cp-main">
+      <div class="cp-card">
+        <div class="cp-section-head"><div class="cp-section-icon">👤</div><div><h3>Your Information</h3><p>Please enter your details carefully.</p></div></div>
+        <div class="cp-progress"><span class="cp-step active">1</span><span class="cp-line"></span><span class="cp-step">2</span><span>Review & Confirm</span></div>
+        <div class="cp-grid">
+          <div class="cp-field"><label>Customer Name <b>*</b></label><input id="custName" class="cp-input" placeholder="Enter your full name" required></div>
+          <div class="cp-field"><label>Phone Number <b>*</b></label><input id="custPhone" class="cp-input" type="tel" inputmode="tel" placeholder="01XXXXXXXXX" required></div>
+          <div class="cp-field full"><label>Delivery Address <b>*</b></label><textarea id="custAddress" class="cp-textarea" placeholder="House, Road, Area, City / District" required></textarea></div>
+        </div>
+      </div>
+      <div class="cp-card">
+        <div class="cp-section-head"><div class="cp-section-icon">💳</div><div><h3>Payment Method</h3><p>Choose your preferred payment method.</p></div></div>
+        <div class="cp-payments">
+          <button type="button" class="cp-pay active" data-payment="Cash on Delivery"><span class="cp-pay-icon">💵</span><strong>Cash on Delivery</strong><small>Pay when you receive</small><i>✓</i></button>
+          <button type="button" class="cp-pay" data-payment="bKash"><span class="cp-pay-icon">💗</span><strong>bKash</strong><small>Pay with bKash</small><i>✓</i></button>
+          <button type="button" class="cp-pay" data-payment="Nagad"><span class="cp-pay-icon">🟠</span><strong>Nagad</strong><small>Pay with Nagad</small><i>✓</i></button>
+          <button type="button" class="cp-pay" data-payment="Rocket"><span class="cp-pay-icon">🚀</span><strong>Rocket</strong><small>Pay with Rocket</small><i>✓</i></button>
+        </div>
+        <select id="custPaymentMethod" class="cp-hidden-select"><option value="Cash on Delivery">Cash on Delivery</option><option>bKash</option><option>Nagad</option><option>Rocket</option></select>
+      </div>
+      <div class="cp-card">
+        <div class="cp-section-head"><div class="cp-section-icon">📝</div><div><h3>Customer Note <span>(Optional)</span></h3><p>Any special request or message for us.</p></div></div>
+        <textarea id="custNote" class="cp-textarea cp-note" placeholder="e.g. Please call before delivery, gift wrap, etc..."></textarea>
+        <div class="cp-note-count">Optional • We will see your note with the order</div>
+      </div>
+      <button class="cp-confirm" type="submit">🛒 &nbsp; Confirm Order <span>→</span></button>
+      <div class="cp-secure">🔒 Your information is safe and secure with us</div>
+    </form>
+    <aside class="cp-card cp-summary">
+      <div class="cp-summary-head"><h3>🛍️ Your Order Summary</h3><span id="checkoutItemCount">0 Items</span></div>
+      <div id="checkoutItems" class="cp-items"></div>
+      <div class="cp-totals"><div><span>Subtotal</span><b id="checkoutSubtotal">৳0</b></div><div><span>Delivery Charge</span><b>৳0 <em>FREE</em></b></div></div>
+      <div class="cp-total"><span>Total</span><strong id="checkoutGrandTotal">৳0</strong></div>
+      <div class="cp-benefits"><div>🛡️ <span><b>100% Genuine Products</b><small>Original & trusted products</small></span></div><div>🚚 <span><b>Fast Delivery</b><small>All over Bangladesh</small></span></div><div>🔐 <span><b>Secure Payment</b><small>Your data is safe with us</small></span></div><div>🎧 <span><b>24/7 Support</b><small>We're always here to help</small></span></div></div>
+    </aside>
+  </div>
+  <div class="cp-footer"><span>🚚 Free Delivery</span><span>🛡️ Secure Payment</span><span>🏆 Best Quality</span><span>🎧 Customer Support</span><b>Stay Connected ♥</b></div>
+</div>
+</div>
 <div class="modal" id="orderSuccessModal"><div class="modal-box" style="max-width:560px"><div class="order-success-box"><button class="close" id="closeOrderSuccess" style="position:absolute;right:24px;top:18px">×</button><div class="order-success-icon">✓</div><h2 style="margin:0">Order Confirmed!</h2><p class="muted" style="margin:5px 0 0">Your order has been saved successfully.</p><div class="order-id-box"><code id="successOrderId">SGG-XXXXXX</code><button class="btn btn-soft" id="copyOrderId">📋 Copy</button></div><div id="successOrderSummary" class="panel" style="padding:14px;text-align:left"></div><div class="order-success-actions"><button class="btn btn-blue" id="downloadInvoiceBtn">📄 Download Invoice PDF</button><button class="btn btn-soft" id="successTrackBtn">🔎 Track My Order</button><button class="btn btn-primary full" id="closeSuccessBtn">Done</button></div></div></div></div>
 <div class="modal" id="orderDetailModal"><div class="modal-box" style="max-width:680px;max-height:90vh;overflow:auto"><div class="modal-head"><h2>Order Details</h2><button class="close" id="closeOrderDetail">×</button></div><div id="orderDetailContent"></div></div></div>
 <div class="modal" id="editOrderModal"><div class="modal-box" style="max-width:620px;max-height:90vh;overflow:auto"><div class="modal-head"><h2>✏️ Edit Order</h2><button class="close" id="closeEditOrder">×</button></div><form id="editOrderForm"><input type="hidden" id="editOrderId"><label>Customer Name</label><input class="field" id="editCustomerName" required style="margin-top:6px"><label style="display:block;margin-top:10px">Phone Number</label><input class="field" id="editPhone" required style="margin-top:6px"><label style="display:block;margin-top:10px">Delivery Address</label><textarea class="field" id="editAddress" required style="margin-top:6px;min-height:80px"></textarea><label style="display:block;margin-top:10px">Payment Method</label><select class="field" id="editPaymentMethod" style="margin-top:6px"><option>Cash on Delivery</option><option>bKash</option><option>Nagad</option><option>Rocket</option></select><label style="display:block;margin-top:10px">Customer Note</label><textarea class="field" id="editCustomerNote" style="margin-top:6px;min-height:70px"></textarea><label style="display:block;margin-top:10px">🔒 Admin Private Note</label><textarea class="field" id="editAdminNote" placeholder="Only you can see this note" style="margin-top:6px;min-height:90px"></textarea><div style="display:flex;gap:8px;justify-content:flex-end;margin-top:14px"><button type="button" class="btn btn-soft" id="cancelEditOrder">Cancel</button><button type="submit" class="btn btn-blue">💾 Save Changes</button></div></form></div></div>
@@ -374,7 +438,16 @@ function removeCart(i){cart.splice(i,1);save();renderCart()}
 function toast(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");clearTimeout(window.tt);window.tt=setTimeout(()=>t.classList.remove("show"),2200)}
 search.addEventListener("input",render);category.addEventListener("change",render);refreshCategories();render();save();
 document.getElementById("cartBtn").onclick=openCart;document.getElementById("closeCart").onclick=()=>document.getElementById("cartModal").classList.remove("open");
-document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}document.getElementById("orderModal").classList.add("open");};
+function renderPremiumCheckout(){
+ const itemsBox=document.getElementById("checkoutItems");
+ const total=cart.reduce((sum,p)=>sum+(Number(p.price)||0),0);
+ document.getElementById("checkoutItemCount").textContent=`${cart.length} ${cart.length===1?"Item":"Items"}`;
+ document.getElementById("checkoutSubtotal").textContent=money(total);
+ document.getElementById("checkoutGrandTotal").textContent=money(total);
+ itemsBox.innerHTML=cart.length?cart.map(p=>`<div class="cp-item"><div class="cp-thumb">${p.image?`<img src="${escHtml(p.image)}" alt="">`:(p.icon||"📦")}</div><div><div class="cp-item-name">${escHtml(p.name)}</div><div class="cp-item-meta">1 × ${money(Number(p.price)||0)}</div></div><div class="cp-item-price">${money(Number(p.price)||0)}</div></div>`).join(""):``;
+}
+document.querySelectorAll(".cp-pay").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".cp-pay").forEach(x=>x.classList.remove("active"));btn.classList.add("active");document.getElementById("custPaymentMethod").value=btn.dataset.payment;}));
+document.getElementById("checkoutBtn").onclick=()=>{if(!cart.length){toast("Add a product first.");return;}renderPremiumCheckout();document.getElementById("orderModal").classList.add("open");};
 document.getElementById("closeOrder").onclick=()=>document.getElementById("orderModal").classList.remove("open");
 document.getElementById("orderForm").onsubmit=async e=>{
  e.preventDefault();
@@ -384,10 +457,11 @@ document.getElementById("orderForm").onsubmit=async e=>{
  const address=document.getElementById("custAddress").value.trim();
  const paymentMethod=document.getElementById("custPaymentMethod").value;
  const customerNote=document.getElementById("custNote").value.trim();
+ if(!paymentMethod){toast("Please select a payment method.");return;}
  const total=cart.reduce((s,p)=>s+(Number(p.price)||0),0);
  const id="SGG-"+(Date.now().toString(36).slice(-4)+Math.random().toString(36).slice(2,4)).toUpperCase();
  const items=cart.map(p=>({id:p.id,name:p.name,price:Number(p.price)||0}));
- const order={id,name,phone,address,items,total,status:"Pending",createdAt:new Date().toISOString()};
+ const order={id,name,phone,address,items,total,status:"Pending",paymentMethod,customerNote,createdAt:new Date().toISOString()};
  const btn=e.target.querySelector("button[type=submit]");
  if(btn){btn.disabled=true;btn.textContent="Placing order...";}
  try{
@@ -407,7 +481,7 @@ document.getElementById("orderForm").onsubmit=async e=>{
    console.error("Order save failed:",err);
    toast("Order could not be saved: "+(err?.message||String(err)));
  }finally{
-   if(btn){btn.disabled=false;btn.textContent="Confirm Order";}
+   if(btn){btn.disabled=false;btn.textContent="🛒  Confirm Order  →";}
  }
 };
 
